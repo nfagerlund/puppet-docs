@@ -2,6 +2,9 @@
 pygments: true
 markdown: kramdown
 include: _index.html
+destination: ../output
+url: "http://docs.puppetlabs.com"
+safe: false
 defaultnav:
   /: quick_nav.html
   /mcollective: mcollective_menu.html
@@ -29,8 +32,6 @@ defaultnav:
   /guides/deployment_guide:  deploy_guide.html
   /release_notes: release_notes.html
   /learning: learning_nav.html
-destination: ../output
-url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:
 #  mcollective: # an arbitrary name. The working dir for this source will be at externalsources/<name>.
 #    url: /mcollective # The absolute URL where the source's contents should be mounted in the final site.

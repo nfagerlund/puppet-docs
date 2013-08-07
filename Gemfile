@@ -1,7 +1,7 @@
 source "http://gems.rubyforge.org"
 source "http://gemcutter.org"
 
-gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
+gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'aug_2013_upgrade_test'
 gem 'maruku'
 gem 'kramdown'
 gem 'versionomy'
