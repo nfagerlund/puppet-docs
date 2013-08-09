@@ -36,6 +36,8 @@ module Jekyll
         }
       end
       self.output = output_fragment.to_html
+      payload['page']['all_headers'] = @all_headers
+      # payload['page']['all_headers_dump'] = @all_headers.inspect
 
 #       self.output.gsub!(/<h(\d)([^>]*)>(.*?)<\/h\1>/) { |header_tag|
 #         header_tag.gsub(/id="[^'"]+/, '\0' + rand(20).to_s)
