@@ -6,11 +6,12 @@
 module Jekyll
   module Convertible
 
-    alias original_do_layout do_layout
-    def do_layout(payload, layouts)
-      $stdout.puts(payload['page']['title'])
-      original_do_layout(payload, layouts)
-    end
+# Show page titles as we generate them (useful for checking relative speed of certain pages)
+#     alias original_do_layout do_layout
+#     def do_layout(payload, layouts)
+#       $stdout.puts(payload['page']['title'])
+#       original_do_layout(payload, layouts)
+#     end
 
     alias original_render_all_layouts render_all_layouts
     def render_all_layouts(layouts, payload, info)
