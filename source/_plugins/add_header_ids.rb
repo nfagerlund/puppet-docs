@@ -1,7 +1,39 @@
-# NF notes here
+# This monkey-patch intercepts the fully-rendered content fragment of each page,
+# inserts id attributes into each header element tag, builds a list of all
+# headers within the content fragment, and inserts that list into the
+# page.all_headers variable.
 
-# This was very helpful: http://www.runtime-era.com/2012/12/reopen-and-modify-ruby-classes-monkey.html
-# August 8, 2013
+# Previously, docs.puppetlabs.com relied on header ID generation built into the
+# Kramdown markdown library. Unfortunately, this isn't a universal feature of
+# the Markdown spec, and every library seems to do things differently; many
+# don't even support header IDs, some use a different formula for transforming
+# the header text into a unique ID, and the current best-of-class Ruby Markdown
+# library, Redcarpet, uses an idiotic and 100% useless numbers-only scheme.
+#
+# I investigated what Github.com does, because we know they're using Redcarpet
+# but they have actual good header IDs. The experiments are here:
+# https://github.com/nfagerlund/evil-made-manifest/blob/master/headerproblems.
+# markdown -- long story short, they appear to be turning off any auto-IDs in
+# their lightweight markup renderers, and are running a post-processor on
+# the generated HTML. That's obviously the way to go, so that's what we'll do.
+# This should free us from dependency on any specific Markdown implementation,
+# at least for this crucial thing-a-majob. We're still on the hook for things
+# like footnotes, fenced code blocks, tables, etc., but there's no helping that
+# for now, pending a better Markdown spec.
+#
+# If it were possible, it'd be a good idea for everyone doing this to just
+# standardize on Github's scheme, but it's not public, and I'm not sure I've
+# caught all the edges in my reverse-engineering. (I didn't test HTML entities,
+# f'rex.) In the meantime, the best thing for OUR site is to hew as close as
+# possible to Kramdown's behavior.
+#
+# Currently, we behave oddly when a header contains something that Kramdown's
+# smartypants implementation would transform, but other than that I think I've
+# nailed it.
+
+# -NF August 8, 2013
+
+# PS: This was very helpful: http://www.runtime-era.com/2012/12/reopen-and-modify-ruby-classes-monkey.html
 
 module Jekyll
   module Convertible
@@ -31,6 +63,8 @@ module Jekyll
       original_render_all_layouts(layouts, payload, info)
     end
 
+    # Both this method and process_headers_with_nokogiri should have nearly the
+    # same effect.
     def process_headers_with_gsub
       require 'htmlentities'
       entitier = HTMLEntities.new
@@ -62,6 +96,10 @@ module Jekyll
       }
     end
 
+    # This method is safer, more correct, and easier to debug. It also adds a
+    # minimum of 1:40 to generating the docs.puppetlabs.com site as of August
+    # 2013. Nokogiri is also incredibly fucked up to try and install with
+    # Bundler. Anyway, that's why we're sinning with regexes.
     def process_headers_with_nokogiri
       require 'nokogiri'
       output_fragment = Nokogiri::HTML::DocumentFragment.parse(self.output)

@@ -15,6 +15,13 @@
 
 require 'jekyll'
 
+# August 2013: This is no longer used, and has been replaced by the render_toc
+# tag, which takes advantage of a collection of header objects built in the
+# add_header_ids monkey-patch.
+
+# The way you're supposed to use this is by filtering the entire content
+# fragment of a page through it: {{ content | toc }}
+
 module TocFilter
   def toc(input)
     hdepth = 0
@@ -50,7 +57,7 @@ module TocFilter
         }
       )
       hdepth = hlevel # Set the current depth.
-    } 
+    }
     print_toc_sublist(toc)
   end
   def print_toc_sublist(ary)
@@ -62,7 +69,7 @@ module TocFilter
       sublist_string << print_toc_sublist(header['sublist'])
       sublist_string << "</li>\n"
     }
-    
+
     sublist_string << "</ol>"
     sublist_string
   end
