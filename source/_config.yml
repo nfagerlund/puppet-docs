@@ -2,7 +2,7 @@
 pygments: true
 markdown: redcarpet
 redcarpet:
-  extensions: ["no_intra_emphasis", "tables", "footnotes", "smart"]
+  extensions: ["no_intra_emphasis", "tables", "smart"]
 kramdown:
   auto_ids: false
 include: [_index.html]
