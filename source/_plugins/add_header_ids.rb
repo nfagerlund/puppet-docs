@@ -5,7 +5,6 @@
 
 module Jekyll
   module Convertible
-    require 'nokogiri'
 
     alias original_do_layout do_layout
     def do_layout(payload, layouts)
@@ -23,8 +22,47 @@ module Jekyll
 
       # I want to:
       # - Rewrite all <h\d> elements in the content to have an ID attribute, calculated the same way Kramdown does it.
-      # - Keep an array of all headers (including the header level, the text, and the ID), in the order in which they were encountered in the document.
+      # - Keep an array of all headers (including 'level' [integer], 'text' [string], and 'id' [string without leading #]), in the order in which they were encountered in the document.
 
+      process_headers_with_gsub # populates the @all_headers instance variable
+      payload['page']['all_headers'] = @all_headers
+      # payload['page']['all_headers_dump'] = @all_headers.inspect
+      original_render_all_layouts(layouts, payload, info)
+    end
+
+    def process_headers_with_gsub
+      require 'htmlentities'
+      entitier = HTMLEntities.new
+      self.output.gsub!(
+        %r{
+          <(h # 1: The whole element name -- h2, h3, etc.
+            (\d) # 2: Header level
+          )
+          (?:
+            >|\s+([^>]+)> # 3: Empty or a set of attributes, which would include id="blah" if we turned on auto_ids. The group makes a capture, possibly empty, even if the alternator keeps matching from reaching it.
+          )
+          (.*?) # 4: Header text, potentially including <em> or <code> or some other span-level element
+          </\1\s*> # Closing tag, backreferencing the element name
+        }imx
+      ) {|header|
+        header_name = $1
+        header_level = $2.to_i
+        header_inner_html = $4
+        header_text = entitier.decode( header_inner_html.gsub(/<[^>]+>/m, '').strip ) # Get rid of any span-level tags inside the header text, strip trailing whitespace, and decode any html entities.
+        header_id = generate_id(header_text)
+        @all_headers ||= []
+        @all_headers << {
+          'text'  => header_text,
+          'level' => header_level,
+          'id'    => header_id
+        }
+        # And now we have to replace the element with an ID added:
+        ('<' + header_name + %q{ id="} + header_id + %q{">} + header_inner_html + '</' + header_name + '>')
+      }
+    end
+
+    def process_headers_with_nokogiri
+      require 'nokogiri'
       output_fragment = Nokogiri::HTML::DocumentFragment.parse(self.output)
       output_fragment.css('h1,h2,h3,h4,h5,h6').each do |header|
         header[:id] = generate_id(header.text)
@@ -36,15 +74,12 @@ module Jekyll
         }
       end
       self.output = output_fragment.to_html
-      payload['page']['all_headers'] = @all_headers
-      # payload['page']['all_headers_dump'] = @all_headers.inspect
 
 #       self.output.gsub!(/<h(\d)([^>]*)>(.*?)<\/h\1>/) { |header_tag|
 #         header_tag.gsub(/id="[^'"]+/, '\0' + rand(20).to_s)
 #       }
-
-      original_render_all_layouts(layouts, payload, info)
     end
+
 
     # Stolen & modified from Kramdown code, which has MIT license. -NF
     # Generate an unique alpha-numeric ID from the the string +str+ for use as a header ID.
