@@ -1,3 +1,9 @@
+# TODO: provide the ability to selectively disable rewriting of header elements,
+# so we can produce more tightly structured pages (e.g. type reference, etc.). I
+# think the right way to do this is write another method that uses #scan to
+# populate the @all_headers variable, check the page metadata for
+# "munge_headers: false", and choose which method to run based on that.
+
 # This monkey-patch intercepts the fully-rendered content fragment of each page,
 # inserts id attributes into each header element tag, builds a list of all
 # headers within the content fragment, and inserts that list into the
