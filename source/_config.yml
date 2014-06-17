@@ -1,7 +1,14 @@
 ---
-pygments: true
-markdown: kramdown
-include: _index.html
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "tables", "footnotes", "smart"]
+kramdown:
+  auto_ids: false
+include: [_index.html]
+destination: ../output
+url: "http://docs.puppetlabs.com"
+safe: false
 defaultnav:
   /: fallback_nav.html
   /facter/1.6: facter16.html

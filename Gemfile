@@ -1,6 +1,9 @@
 source 'https://rubygems.org/'
 
-gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
+gem 'redcarpet'
+gem 'jekyll', '~>2.0'
+# gem 'nokogiri', '<1.6.0'
+gem 'htmlentities'
 gem 'maruku'
 gem 'kramdown'
 gem 'versionomy'
