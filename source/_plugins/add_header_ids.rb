@@ -63,7 +63,7 @@ module Jekyll
       # - Rewrite all <h\d> elements in the content to have an ID attribute, calculated the same way Kramdown does it.
       # - Keep an array of all headers (including 'level' [integer], 'text' [string], and 'id' [string without leading #]), in the order in which they were encountered in the document.
 
-      process_headers_with_gsub # populates the @all_headers instance variable
+      process_headers_with_nokogiri # populates the @all_headers instance variable
       payload['page']['all_headers'] = @all_headers
       # payload['page']['all_headers_dump'] = @all_headers.inspect
       original_render_all_layouts(layouts, payload, info)
@@ -110,7 +110,9 @@ module Jekyll
       require 'nokogiri'
       output_fragment = Nokogiri::HTML::DocumentFragment.parse(self.output)
       output_fragment.css('h1,h2,h3,h4,h5,h6').each do |header|
-        header[:id] = generate_id(header.text)
+        unless header[:id]
+          header[:id] = generate_id(header.text)
+        end
         @all_headers ||= []
         @all_headers << {
           'text'  => header.text,

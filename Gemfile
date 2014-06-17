@@ -2,7 +2,7 @@ source 'https://rubygems.org/'
 
 gem 'redcarpet'
 gem 'jekyll', '~>2.0'
-# gem 'nokogiri', '<1.6.0'
+gem 'nokogiri'
 gem 'htmlentities'
 gem 'maruku'
 gem 'kramdown'
