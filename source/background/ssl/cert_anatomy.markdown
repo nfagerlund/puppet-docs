@@ -16,10 +16,6 @@ title: "Background Reference: X.509 Certificate Anatomy"
 [ca_name]: /references/latest/configuration.html#caname
 [wiki_x509]: http://en.wikipedia.org/wiki/X.509
 
-<!-- The following references are not used in the text:
-[pem]:
--->
-
 > This article is [part of a series][index].
 
 As described in the background reference article about [certificates and PKI][certs], certificates are documents containing a public key, metadata, and a signature.
