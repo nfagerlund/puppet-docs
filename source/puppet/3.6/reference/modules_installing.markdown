@@ -41,30 +41,21 @@ Using the Module Tool
 
 The `puppet module` subcommand has several **actions.** The main actions used for managing modules are:
 
-`install`
-: Install a module from the Forge or a release archive.
+- **`install`** --- Install a module from the Forge or a release archive.
 
-      # puppet module install puppetlabs-apache --version 0.0.2
+  Example: `puppet module install puppetlabs-apache --version 0.0.2`
+- **`list`** --- List installed modules.
 
-`list`
-: List installed modules.
+  Example: `puppet module list`
+- **`search`** --- Search the Forge for a module.
 
-      # puppet module list
+  Example: `puppet module search apache`
+- **`uninstall`** --- Uninstall a puppet module.
 
-`search`
-: Search the Forge for a module.
+  Example: `puppet module uninstall puppetlabs-apache`
+- **`upgrade`** --- Upgrade a puppet module.
 
-      # puppet module search apache
-
-`uninstall`
-: Uninstall a puppet module.
-
-      # puppet module uninstall puppetlabs-apache
-
-`upgrade`
-: Upgrade a puppet module.
-
-      # puppet module upgrade puppetlabs-apache --version 0.0.3
+  Example: `puppet module upgrade puppetlabs-apache --version 0.0.3`
 
 If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
 
@@ -72,12 +63,12 @@ If you have used a command line package manager tool (like `gem`, `apt-get`, or 
 
 In order to use the puppet module tool behind a proxy, you need to set the following:
 
-	export http_proxy=http://10.187.255.9:8080 
+	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
-	
+
 Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](http://docs.puppetlabs.com/references/latest/configuration.html).
 
-**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects. 
+**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
 
 Installing Modules
@@ -118,7 +109,7 @@ Make sure to use the `--ignore-dependencies` flag if you cannot currently reach 
 
 ### Installing PE Supported Modules
 
-PE 3.2 introduced [supported modules](http://forge.puppetlabs.com/supported), which  includes additional fields in the modules' metadata.json file to indicate compatibility with PE versions and OSes. The puppet module tool (PMT) has been updated to look for PE version requirements in the metadata. 
+PE 3.2 introduced [supported modules](http://forge.puppetlabs.com/supported), which  includes additional fields in the modules' metadata.json file to indicate compatibility with PE versions and OSes. The puppet module tool (PMT) has been updated to look for PE version requirements in the metadata.
 
 If you are running PE 3.2 or greater, please note that if a version of the module matches the installed version of PE, non-matching versions will be filtered out. The `--force` flag will prevent this filtering, and will either install the most recent version of the module if no version is specified or install the specified version. Note that the `--force` flag will ignore dependencies and checksums, as well as overwrite installed modules with the same modulename. The `--debug` flag will show whether a module is being filtered or not. If no PE version metadata is present in any version, all available versions of the module will be displayed.
 

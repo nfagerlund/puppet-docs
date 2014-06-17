@@ -29,34 +29,41 @@ The Puppet language allows several data types as [variables][], [attribute][] va
 Booleans
 -----
 
-The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare words (that is, not quoted). 
+The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare words (that is, not quoted).
 
-The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][function]. 
+The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][function].
 
 ### Automatic Conversion to Boolean
 
 If a non-boolean value is used where a boolean is required, it will be automatically converted to a boolean as follows:
 
-Strings
-: Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: all [facts][] are strings in this version of Puppet, so "boolean" facts must be handled carefully.**
+#### Strings
 
-  > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently. 
+Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: all [facts][] are strings in this version of Puppet, so "boolean" facts must be handled carefully.**
 
-Numbers
-: All numbers are true, including zero and negative numbers. 
+> Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently.
 
-  > Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently. 
+#### Numbers
 
-Undef
-: The special data type `undef` is false.
+All numbers are true, including zero and negative numbers.
 
-Arrays and Hashes
-: Any array or hash is true, including the empty array and empty hash.
+> Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently.
 
-Resource References
-: Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
+#### Undef
 
-Regular expressions cannot be converted to boolean values.
+The special data type `undef` is false.
+
+#### Arrays and Hashes
+
+Any array or hash is true, including the empty array and empty hash.
+
+#### Resource References
+
+Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
+
+#### Regular Expressions
+
+Regular expressions cannot be converted to boolean values; using them in a boolean context will cause a syntax error.
 
 * * *
 
@@ -65,7 +72,7 @@ Undef
 
 Puppet's special undef value is roughly equivalent to nil in Ruby; variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
 
-The undef value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged. 
+The undef value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged.
 
 When used as a boolean, `undef` is false.
 
@@ -95,7 +102,7 @@ Lone backslashes are literal backslashes, unless followed by a single quote or a
 * When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 * When a literal double backslash is intended, a quadruple backslash must be used.
 
-### Double-Quoted Strings 
+### Double-Quoted Strings
 
 Strings surrounded by double quotes `"like this"` allow variable interpolation and several escape sequences. Line breaks within the string are interpreted as literal line breaks, and you can also insert line breaks by using the `\n` escape sequence.
 
@@ -114,7 +121,7 @@ Any [`$variable`][variables] in a double-quoted string will be replaced with its
 In a double-quoted string, you may interpolate the value of an arbitrary [expression][] (which may contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
 
 {% highlight ruby %}
-    file {'config.yml':  
+    file {'config.yml':
       content => "...
     db_remote: ${ $clientcert !~ /^db\d+/ }
     ...",
@@ -145,7 +152,7 @@ The following escape sequences are available:
 
 ### Line Breaks
 
-Quoted strings may continue over multiple lines, and line breaks are preserved as a literal part of the string. 
+Quoted strings may continue over multiple lines, and line breaks are preserved as a literal part of the string.
 
 Puppet does not attempt to convert line breaks, which means that the type of line break (Unix/LF or Windows/CRLF) used in the file will be preserved. You can also insert literal foreign line breaks into strings:
 
@@ -156,7 +163,7 @@ Puppet does not attempt to convert line breaks, which means that the type of lin
 
 Puppet treats strings as sequences of bytes. It does not recognize encodings or translate between them, and non-printing characters are preserved.
 
-However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet may impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs. 
+However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet may impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
 
 * * *
 
@@ -173,14 +180,14 @@ Resource references identify a specific existing Puppet resource by its type and
     before => Concat::Fragment['apache_port_header'],
 {% endhighlight %}
 
-The general form of a resource reference is: 
+The general form of a resource reference is:
 
 * The resource **type,** capitalized (every segment must be capitalized if the type includes a namespace separator \[`::`\])
 * An opening square bracket
 * The **title** of the resource, or a comma-separated list of titles
 * A closing square bracket
 
-Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared. 
+Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared.
 
 ### Multi-Resource References
 
@@ -189,7 +196,7 @@ Resource references with an **array of titles** or **comma-separated list of tit
 {% highlight ruby %}
     # A multi-resource reference:
     require => File['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types'],
-    # An equivalent multi-resource reference: 
+    # An equivalent multi-resource reference:
     $my_files = ['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types']
     require => File[$my_files]
 {% endhighlight %}
@@ -204,14 +211,14 @@ Numbers
 
 Puppet's arithmetic expressions accept integers and floating point numbers. Internally, Puppet treats numbers like strings until they are used in a numeric context.
 
-Numbers can be written as bare words or quoted strings, and may consist only of digits with an optional negative sign (`-`) and decimal point. 
+Numbers can be written as bare words or quoted strings, and may consist only of digits with an optional negative sign (`-`) and decimal point.
 
 {% highlight ruby %}
     $some_number = 8 * -7.992
     $another_number = $some_number / 4
 {% endhighlight %}
 
-Numbers **cannot** include explicit positive signs (`+`) or exponents. Numbers between -1 and 1 **cannot** start with a bare decimal point; they must have a leading zero. 
+Numbers **cannot** include explicit positive signs (`+`) or exponents. Numbers between -1 and 1 **cannot** start with a bare decimal point; they must have a leading zero.
 
 {% highlight ruby %}
     $product = 8 * +4 # syntax error
@@ -229,7 +236,7 @@ Arrays are written as comma-separated lists of items surrounded by square bracke
 
 {% highlight ruby %}
     [ 'one', 'two', 'three' ]
-    # Equivalent: 
+    # Equivalent:
     [ 'one', 'two', 'three', ]
 {% endhighlight %}
 
@@ -239,7 +246,7 @@ Resource attributes which can optionally accept multiple values (including the r
 
 ### Indexing
 
-You can access items in an array by their numerical index (counting from zero). Square brackets are used for indexing. 
+You can access items in an array by their numerical index (counting from zero). Square brackets are used for indexing.
 
 Example:
 
@@ -271,7 +278,7 @@ The first notice would log `three`, and the second would log `four`.
 
 ### Additional Functions
 
-The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with arrays, including: 
+The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with arrays, including:
 
 * `delete`
 * `delete_at`
@@ -293,12 +300,12 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `zip`
 
 
-* * * 
+* * *
 
 Hashes
 -----
 
-Hashes are written as key/value pairs surrounded by curly braces; a key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace. 
+Hashes are written as key/value pairs surrounded by curly braces; a key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
 
 {% highlight ruby %}
     { key1 => 'val1', key2 => 'val2' }
@@ -313,7 +320,7 @@ Hash keys are strings, but hash values can be any data type, including arrays or
 You can access hash members with their key; square brackets are used for indexing.
 
 {% highlight ruby %}
-    $myhash = { key       => "some value", 
+    $myhash = { key       => "some value",
                 other_key => "some other value" }
     notice( $myhash[key] )
 {% endhighlight %}
@@ -336,7 +343,7 @@ This example manifest would log `443` as a notice.
 
 ### Additional Functions
 
-The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with hashes, including: 
+The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with hashes, including:
 
 * `has_key`
 * `is_hash`
@@ -346,7 +353,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `values`
 
 
-* * * 
+* * *
 
 Regular Expressions
 -----
@@ -374,7 +381,7 @@ Regexes in Puppet cannot have options or encodings appended after the final slas
      }
 {% endhighlight %}
 
-The following options are allowed: 
+The following options are allowed:
 
 * i --- Ignore case
 * m --- Treat a newline as a character matched by `.`
@@ -382,7 +389,7 @@ The following options are allowed:
 
 ### Regex Capture Variables
 
-Within [conditional statements][conditional] that use regexes (but **not** [node definitions][node] that use them), any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`. 
+Within [conditional statements][conditional] that use regexes (but **not** [node definitions][node] that use them), any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`.
 
 These are not normal variables, and have some special behaviors:
 

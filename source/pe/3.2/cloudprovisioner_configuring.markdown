@@ -81,17 +81,10 @@ You can access these configurations by prepending cloud provisioner commands wit
 
 To connect to a VMware vSphere server, you must put the following information in your `~/.fog` file:
 
-`:vsphere_server`
-: The name of your vCenter host (for example: `vc1.example.com`). You should already know the value for this setting.
-
-`:vsphere_username`
-: Your vCenter username. You should already know the value for this setting.
-
-`:vsphere_password`
-: Your vCenter password. You should already know the value for this setting.
-
-`:vsphere_expected_pubkey_hash`
-: A public key hash for your vSphere server. The value for this setting can be obtained by entering the other three settings and then running the following command:
+- **`:vsphere_server`** --- The name of your vCenter host (for example: `vc1.example.com`). You should already know the value for this setting.
+- **`:vsphere_username`** --- Your vCenter username. You should already know the value for this setting.
+- **`:vsphere_password`** --- Your vCenter password. You should already know the value for this setting.
+- **`:vsphere_expected_pubkey_hash`** --- A public key hash for your vSphere server. The value for this setting can be obtained by entering the other three settings and then running the following command:
 
         $ puppet node_vmware list
 
@@ -112,11 +105,8 @@ To connect to a VMware vSphere server, you must put the following information in
 
 To connect to Amazon Web Services, you must put the following information in your `~/.fog` file:
 
-`:aws_access_key_id`
-: Your AWS Access Key ID. See below for how to find this.
-
-`:aws_secret_access_key`
-: Your AWS Secret Key ID. See below for how to find this.
+- **`:aws_access_key_id`** --- Your AWS Access Key ID. See below for how to find this.
+- **`:aws_secret_access_key`** --- Your AWS Secret Key ID. See below for how to find this.
 
 For *AWS installations*, you can find your Amazon Web Services credentials online in your Amazon account. To view them, go to [Amazon AWS](http://aws.amazon.com) and click on the Account tab.
 
@@ -188,7 +178,7 @@ Go to https://cloud.google.com and sign in with your Google credentials.
 Click the **Create Project** button, and give your project a name. This creates your project in the Google Cloud Console. Some options for working with your project are displayed in the left navigation bar.
 
 In the left-hand navigation bar, click **APIs and auth** and then click **Registered Apps**.
- 
+
 Click the **REGISTER APP** button. Give your app a name--it can be whatever you like--and click **Native** as the platform.
 
 Click **Register**. Your app's page opens, and a CLIENT ID and CLIENT SECRET are provided. **Note** You'll need the ID and secret, so capture these for future reference.

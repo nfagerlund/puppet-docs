@@ -23,18 +23,19 @@ Actions: `<%= entities.keys.sort.join("`, `") %>`
 <%= entities[action][:description] %>
 
 % unless entities[action][:input].empty?
-**Input<% unless entities[action][:input].size == 1 %>s<% end %>:**
+#### Input<% unless entities[action][:input].size == 1 %>s<% end %>
 
 %    entities[action][:input].keys.sort.each do |input|
-`<%= input %>` <% unless entities[action][:input][input][:optional] %>**(required)**<% end %>
-: <%= entities[action][:input][input][:description] %>
+##### `<%= input %>` <% unless entities[action][:input][input][:optional] %>(required)<% end %>
 
-  - **Type:** <%= entities[action][:input][input][:type] %>
+<%= entities[action][:input][input][:description] %>
+
+- **Type:** <%= entities[action][:input][input][:type] %>
 %        if entities[action][:input][input][:type] == :string
-  - **Format/Validation:** `<%= entities[action][:input][input][:validation] %>`
-  - **Length:** <%= entities[action][:input][input][:maxlength] %>
+- **Format/Validation:** `<%= entities[action][:input][input][:validation] %>`
+- **Length:** <%= entities[action][:input][input][:maxlength] %>
 %        elsif entities[action][:input][input][:type] == :list
-  - **Valid Values:** `<%= entities[action][:input][input][:list].join("`, `") %>`
+- **Valid Values:** `<%= entities[action][:input][input][:list].join("`, `") %>`
 %        end
 
 %    end
@@ -42,13 +43,14 @@ Actions: `<%= entities.keys.sort.join("`, `") %>`
 (no inputs)
 % end
 
-**Output<% unless entities[action][:output].size == 1 %>s<% end %>:**
+#### Output<% unless entities[action][:output].size == 1 %>s<% end %>
 
 %    entities[action][:output].keys.sort.each do |output|
-`<%= output %>`
-: (Appears as "<%= entities[action][:output][output][:display_as] %>" on CLI)
+##### `<%= output %>`
 
-  <%= entities[action][:output][output][:description] %>
+(Appears as "<%= entities[action][:output][output][:display_as] %>" on CLI)
+
+<%= entities[action][:output][output][:description] %>
 
 %    end
 

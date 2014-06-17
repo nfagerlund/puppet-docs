@@ -41,17 +41,10 @@ Relationships can be declared with the relationship metaparameters, chaining arr
 
 Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.**
 
-`before`
-: Causes a resource to be applied **before** the target resource.
-
-`require`
-: Causes a resource to be applied **after** the target resource.
-
-`notify`
-: Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
-
-`subscribe`
-: Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
+- **`before`** --- Causes a resource to be applied **before** the target resource.
+- **`require`** --- Causes a resource to be applied **after** the target resource.
+- **`notify`** --- Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
+- **`subscribe`** --- Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
 
 If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach will create the same relationship. The same is true of `notify` and `subscribe`.
 
@@ -102,11 +95,8 @@ The two examples below create the same notification relationship:
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
-`->` (ordering arrow)
-: Causes the resource on the left to be applied before the resource on the right. Written with a hyphen and a greater-than sign.
-
-`~>` (notification arrow)
-: Causes the resource on the left to be applied first, and sends a refresh event to the resource on the right if the left resource changes. Written with a tilde and a greater-than sign.
+- **`->` (ordering arrow)** --- Causes the resource on the left to be applied before the resource on the right. Written with a hyphen and a greater-than sign.
+- **`~>` (notification arrow)** --- Causes the resource on the left to be applied first, and sends a refresh event to the resource on the right if the left resource changes. Written with a tilde and a greater-than sign.
 
 #### Operands
 

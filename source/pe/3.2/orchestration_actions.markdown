@@ -44,22 +44,25 @@ Check for APT updates
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`exitcode`
-: (Appears as "Exit Code" on CLI)
+##### `exitcode`
 
-  The exitcode from the apt command
+(Appears as "Exit Code" on CLI)
 
-`outdated_packages`
-: (Appears as "Outdated Packages" on CLI)
+The exitcode from the apt command
 
-  Outdated packages
+##### `outdated_packages`
 
-`output`
-: (Appears as "Output" on CLI)
+(Appears as "Outdated Packages" on CLI)
 
-  Output from APT
+Outdated packages
+
+##### `output`
+
+(Appears as "Output" on CLI)
+
+Output from APT
 
 
 [↑ Back to top](#content)
@@ -72,17 +75,19 @@ Update the apt cache
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`exitcode`
-: (Appears as "Exit Code" on CLI)
+##### `exitcode`
 
-  The exitcode from the apt-get command
+(Appears as "Exit Code" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+The exitcode from the apt-get command
 
-  Output from apt-get
+##### `output`
+
+(Appears as "Output" on CLI)
+
+Output from apt-get
 
 
 [↑ Back to top](#content)
@@ -95,27 +100,31 @@ Check for updates
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`exitcode`
-: (Appears as "Exit Code" on CLI)
+##### `exitcode`
 
-  The exitcode from the package manager command
+(Appears as "Exit Code" on CLI)
 
-`outdated_packages`
-: (Appears as "Outdated Packages" on CLI)
+The exitcode from the package manager command
 
-  Outdated packages
+##### `outdated_packages`
 
-`output`
-: (Appears as "Output" on CLI)
+(Appears as "Outdated Packages" on CLI)
 
-  Output from Package Manager
+Outdated packages
 
-`package_manager`
-: (Appears as "Package Manager" on CLI)
+##### `output`
 
-  The detected package manager
+(Appears as "Output" on CLI)
+
+Output from Package Manager
+
+##### `package_manager`
+
+(Appears as "Package Manager" on CLI)
+
+The detected package manager
 
 
 [↑ Back to top](#content)
@@ -126,57 +135,66 @@ Check for updates
 
 Install a package
 
-**Input:**
+#### Input
 
-`package` **(required)**
-: Package to install
+##### `package` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 90
+Package to install
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`arch`
-: (Appears as "Arch" on CLI)
+##### `arch`
 
-  Package architecture
+(Appears as "Arch" on CLI)
 
-`ensure`
-: (Appears as "Ensure" on CLI)
+Package architecture
 
-  Full package version
+##### `ensure`
 
-`epoch`
-: (Appears as "Epoch" on CLI)
+(Appears as "Ensure" on CLI)
 
-  Package epoch number
+Full package version
 
-`name`
-: (Appears as "Name" on CLI)
+##### `epoch`
 
-  Package name
+(Appears as "Epoch" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+Package epoch number
 
-  Output from the package manager
+##### `name`
 
-`provider`
-: (Appears as "Provider" on CLI)
+(Appears as "Name" on CLI)
 
-  Provider used to retrieve information
+Package name
 
-`release`
-: (Appears as "Release" on CLI)
+##### `output`
 
-  Package release number
+(Appears as "Output" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Output from the package manager
 
-  Version number
+##### `provider`
+
+(Appears as "Provider" on CLI)
+
+Provider used to retrieve information
+
+##### `release`
+
+(Appears as "Release" on CLI)
+
+Package release number
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+Version number
 
 
 [↑ Back to top](#content)
@@ -187,57 +205,66 @@ Install a package
 
 Purge a package
 
-**Input:**
+#### Input
 
-`package` **(required)**
-: Package to purge
+##### `package` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 90
+Package to purge
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`arch`
-: (Appears as "Arch" on CLI)
+##### `arch`
 
-  Package architecture
+(Appears as "Arch" on CLI)
 
-`ensure`
-: (Appears as "Ensure" on CLI)
+Package architecture
 
-  Full package version
+##### `ensure`
 
-`epoch`
-: (Appears as "Epoch" on CLI)
+(Appears as "Ensure" on CLI)
 
-  Package epoch number
+Full package version
 
-`name`
-: (Appears as "Name" on CLI)
+##### `epoch`
 
-  Package name
+(Appears as "Epoch" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+Package epoch number
 
-  Output from the package manager
+##### `name`
 
-`provider`
-: (Appears as "Provider" on CLI)
+(Appears as "Name" on CLI)
 
-  Provider used to retrieve information
+Package name
 
-`release`
-: (Appears as "Release" on CLI)
+##### `output`
 
-  Package release number
+(Appears as "Output" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Output from the package manager
 
-  Version number
+##### `provider`
+
+(Appears as "Provider" on CLI)
+
+Provider used to retrieve information
+
+##### `release`
+
+(Appears as "Release" on CLI)
+
+Package release number
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+Version number
 
 
 [↑ Back to top](#content)
@@ -248,57 +275,66 @@ Purge a package
 
 Get the status of a package
 
-**Input:**
+#### Input
 
-`package` **(required)**
-: Package to retrieve the status of
+##### `package` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 90
+Package to retrieve the status of
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`arch`
-: (Appears as "Arch" on CLI)
+##### `arch`
 
-  Package architecture
+(Appears as "Arch" on CLI)
 
-`ensure`
-: (Appears as "Ensure" on CLI)
+Package architecture
 
-  Full package version
+##### `ensure`
 
-`epoch`
-: (Appears as "Epoch" on CLI)
+(Appears as "Ensure" on CLI)
 
-  Package epoch number
+Full package version
 
-`name`
-: (Appears as "Name" on CLI)
+##### `epoch`
 
-  Package name
+(Appears as "Epoch" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+Package epoch number
 
-  Output from the package manager
+##### `name`
 
-`provider`
-: (Appears as "Provider" on CLI)
+(Appears as "Name" on CLI)
 
-  Provider used to retrieve information
+Package name
 
-`release`
-: (Appears as "Release" on CLI)
+##### `output`
 
-  Package release number
+(Appears as "Output" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Output from the package manager
 
-  Version number
+##### `provider`
+
+(Appears as "Provider" on CLI)
+
+Provider used to retrieve information
+
+##### `release`
+
+(Appears as "Release" on CLI)
+
+Package release number
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+Version number
 
 
 [↑ Back to top](#content)
@@ -309,57 +345,66 @@ Get the status of a package
 
 Uninstall a package
 
-**Input:**
+#### Input
 
-`package` **(required)**
-: Package to uninstall
+##### `package` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 90
+Package to uninstall
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`arch`
-: (Appears as "Arch" on CLI)
+##### `arch`
 
-  Package architecture
+(Appears as "Arch" on CLI)
 
-`ensure`
-: (Appears as "Ensure" on CLI)
+Package architecture
 
-  Full package version
+##### `ensure`
 
-`epoch`
-: (Appears as "Epoch" on CLI)
+(Appears as "Ensure" on CLI)
 
-  Package epoch number
+Full package version
 
-`name`
-: (Appears as "Name" on CLI)
+##### `epoch`
 
-  Package name
+(Appears as "Epoch" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+Package epoch number
 
-  Output from the package manager
+##### `name`
 
-`provider`
-: (Appears as "Provider" on CLI)
+(Appears as "Name" on CLI)
 
-  Provider used to retrieve information
+Package name
 
-`release`
-: (Appears as "Release" on CLI)
+##### `output`
 
-  Package release number
+(Appears as "Output" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Output from the package manager
 
-  Version number
+##### `provider`
+
+(Appears as "Provider" on CLI)
+
+Provider used to retrieve information
+
+##### `release`
+
+(Appears as "Release" on CLI)
+
+Package release number
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+Version number
 
 
 [↑ Back to top](#content)
@@ -370,57 +415,66 @@ Uninstall a package
 
 Update a package
 
-**Input:**
+#### Input
 
-`package` **(required)**
-: Package to update
+##### `package` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 90
+Package to update
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`arch`
-: (Appears as "Arch" on CLI)
+##### `arch`
 
-  Package architecture
+(Appears as "Arch" on CLI)
 
-`ensure`
-: (Appears as "Ensure" on CLI)
+Package architecture
 
-  Full package version
+##### `ensure`
 
-`epoch`
-: (Appears as "Epoch" on CLI)
+(Appears as "Ensure" on CLI)
 
-  Package epoch number
+Full package version
 
-`name`
-: (Appears as "Name" on CLI)
+##### `epoch`
 
-  Package name
+(Appears as "Epoch" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+Package epoch number
 
-  Output from the package manager
+##### `name`
 
-`provider`
-: (Appears as "Provider" on CLI)
+(Appears as "Name" on CLI)
 
-  Provider used to retrieve information
+Package name
 
-`release`
-: (Appears as "Release" on CLI)
+##### `output`
 
-  Package release number
+(Appears as "Output" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Output from the package manager
 
-  Version number
+##### `provider`
+
+(Appears as "Provider" on CLI)
+
+Provider used to retrieve information
+
+##### `release`
+
+(Appears as "Release" on CLI)
+
+Package release number
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+Version number
 
 
 [↑ Back to top](#content)
@@ -433,22 +487,25 @@ Check for YUM updates
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`exitcode`
-: (Appears as "Exit Code" on CLI)
+##### `exitcode`
 
-  The exitcode from the yum command
+(Appears as "Exit Code" on CLI)
 
-`outdated_packages`
-: (Appears as "Outdated Packages" on CLI)
+The exitcode from the yum command
 
-  Outdated packages
+##### `outdated_packages`
 
-`output`
-: (Appears as "Output" on CLI)
+(Appears as "Outdated Packages" on CLI)
 
-  Output from YUM
+Outdated packages
+
+##### `output`
+
+(Appears as "Output" on CLI)
+
+Output from YUM
 
 
 [↑ Back to top](#content)
@@ -459,26 +516,29 @@ Check for YUM updates
 
 Clean the YUM cache
 
-**Input:**
+#### Input
 
-`mode`
-: One of the various supported clean modes
+##### `mode`
 
-  - **Type:** list
-  - **Valid Values:** `all`, `headers`, `packages`, `metadata`, `dbcache`, `plugins`, `expire-cache`
+One of the various supported clean modes
+
+- **Type:** list
+- **Valid Values:** `all`, `headers`, `packages`, `metadata`, `dbcache`, `plugins`, `expire-cache`
 
 
-**Outputs:**
+#### Outputs
 
-`exitcode`
-: (Appears as "Exit Code" on CLI)
+##### `exitcode`
 
-  The exitcode from the yum command
+(Appears as "Exit Code" on CLI)
 
-`output`
-: (Appears as "Output" on CLI)
+The exitcode from the yum command
 
-  Output from YUM
+##### `output`
+
+(Appears as "Output" on CLI)
+
+Output from YUM
 
 [↑ Back to top](#content)
 
@@ -495,27 +555,30 @@ Actions: `disable`, `enable`, `last_run_summary`, `resource`, `runonce`, `status
 
 Disable the Puppet agent
 
-**Input:**
+#### Input
 
-`message`
-: Supply a reason for disabling the Puppet agent
+##### `message`
 
-  - **Type:** string
-  - **Format/Validation:** `shellsafe`
-  - **Length:** 120
+Supply a reason for disabling the Puppet agent
+
+- **Type:** string
+- **Format/Validation:** `shellsafe`
+- **Length:** 120
 
 
-**Outputs:**
+#### Outputs
 
-`enabled`
-: (Appears as "Enabled" on CLI)
+##### `enabled`
 
-  Is the agent currently locked
+(Appears as "Enabled" on CLI)
 
-`status`
-: (Appears as "Status" on CLI)
+Is the agent currently locked
 
-  Status
+##### `status`
+
+(Appears as "Status" on CLI)
+
+Status
 
 
 [↑ Back to top](#content)
@@ -528,17 +591,19 @@ Enable the Puppet agent
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`enabled`
-: (Appears as "Enabled" on CLI)
+##### `enabled`
 
-  Is the agent currently locked
+(Appears as "Enabled" on CLI)
 
-`status`
-: (Appears as "Status" on CLI)
+Is the agent currently locked
 
-  Status
+##### `status`
+
+(Appears as "Status" on CLI)
+
+Status
 
 
 [↑ Back to top](#content)
@@ -551,62 +616,73 @@ Get the summary of the last Puppet run
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`changed_resources`
-: (Appears as "Changed Resources" on CLI)
+##### `changed_resources`
 
-  Resources that were changed
+(Appears as "Changed Resources" on CLI)
 
-`config_retrieval_time`
-: (Appears as "Config Retrieval Time" on CLI)
+Resources that were changed
 
-  Time taken to retrieve the catalog from the master
+##### `config_retrieval_time`
 
-`config_version`
-: (Appears as "Config Version" on CLI)
+(Appears as "Config Retrieval Time" on CLI)
 
-  Puppet config version for the previously applied catalog
+Time taken to retrieve the catalog from the master
 
-`failed_resources`
-: (Appears as "Failed Resources" on CLI)
+##### `config_version`
 
-  Resources that failed to apply
+(Appears as "Config Version" on CLI)
 
-`lastrun`
-: (Appears as "Last Run" on CLI)
+Puppet config version for the previously applied catalog
 
-  When the Agent last applied a catalog in local time
+##### `failed_resources`
 
-`out_of_sync_resources`
-: (Appears as "Out of Sync Resources" on CLI)
+(Appears as "Failed Resources" on CLI)
 
-  Resources that were not in desired state
+Resources that failed to apply
 
-`since_lastrun`
-: (Appears as "Since Last Run" on CLI)
+##### `lastrun`
 
-  How long ago did the Agent last apply a catalog in local time
+(Appears as "Last Run" on CLI)
 
-`summary`
-: (Appears as "Summary" on CLI)
+When the Agent last applied a catalog in local time
 
-  Summary data as provided by Puppet
+##### `out_of_sync_resources`
 
-`total_resources`
-: (Appears as "Total Resources" on CLI)
+(Appears as "Out of Sync Resources" on CLI)
 
-  Total resources managed on a node
+Resources that were not in desired state
 
-`total_time`
-: (Appears as "Total Time" on CLI)
+##### `since_lastrun`
 
-  Total time taken to retrieve and process the catalog
+(Appears as "Since Last Run" on CLI)
 
-`type_distribution`
-: (Appears as "Type Distribution" on CLI)
+How long ago did the Agent last apply a catalog in local time
 
-  Resource counts per type managed by Puppet
+##### `summary`
+
+(Appears as "Summary" on CLI)
+
+Summary data as provided by Puppet
+
+##### `total_resources`
+
+(Appears as "Total Resources" on CLI)
+
+Total resources managed on a node
+
+##### `total_time`
+
+(Appears as "Total Time" on CLI)
+
+Total time taken to retrieve and process the catalog
+
+##### `type_distribution`
+
+(Appears as "Type Distribution" on CLI)
+
+Resource counts per type managed by Puppet
 
 
 [↑ Back to top](#content)
@@ -617,34 +693,38 @@ Get the summary of the last Puppet run
 
 Evaluate Puppet RAL resources
 
-**Inputs:**
+#### Inputs
 
-`name` **(required)**
-: Resource Name
+##### `name` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `^.+$`
-  - **Length:** 150
+Resource Name
 
-`type` **(required)**
-: Resource Type
+- **Type:** string
+- **Format/Validation:** `^.+$`
+- **Length:** 150
 
-  - **Type:** string
-  - **Format/Validation:** `^.+$`
-  - **Length:** 50
+##### `type` **(required)**
+
+Resource Type
+
+- **Type:** string
+- **Format/Validation:** `^.+$`
+- **Length:** 50
 
 
-**Outputs:**
+#### Outputs
 
-`changed`
-: (Appears as "Changed" on CLI)
+##### `changed`
 
-  Was a change applied based on the resource
+(Appears as "Changed" on CLI)
 
-`result`
-: (Appears as "Result" on CLI)
+Was a change applied based on the resource
 
-  The result from the Puppet resource
+##### `result`
+
+(Appears as "Result" on CLI)
+
+The result from the Puppet resource
 
 
 [↑ Back to top](#content)
@@ -655,56 +735,64 @@ Evaluate Puppet RAL resources
 
 Invoke a single Puppet run
 
-**Inputs:**
+#### Inputs
 
-`environment`
-: Which Puppet environment to run
+##### `environment`
 
-  - **Type:** string
-  - **Format/Validation:** `puppet_variable`
-  - **Length:** 50
+Which Puppet environment to run
 
-`force`
-: Will force a run immediately else is subject to default splay time
+- **Type:** string
+- **Format/Validation:** `puppet_variable`
+- **Length:** 50
 
-  - **Type:** boolean
+##### `force`
 
-`noop`
-: Do a Puppet dry run
+Will force a run immediately else is subject to default splay time
 
-  - **Type:** boolean
+- **Type:** boolean
 
-`server`
-: Address and port of the Puppet Master in server:port format
+##### `noop`
 
-  - **Type:** string
-  - **Format/Validation:** `puppet_server_address`
-  - **Length:** 50
+Do a Puppet dry run
 
-`splay`
-: Sleep for a period before initiating the run
+- **Type:** boolean
 
-  - **Type:** boolean
+##### `server`
 
-`splaylimit`
-: Maximum amount of time to sleep before run
+Address and port of the Puppet Master in server:port format
 
-  - **Type:** number
+- **Type:** string
+- **Format/Validation:** `puppet_server_address`
+- **Length:** 50
 
-`tags`
-: Restrict the Puppet run to a comma list of tags
+##### `splay`
 
-  - **Type:** string
-  - **Format/Validation:** `puppet_tags`
-  - **Length:** 120
+Sleep for a period before initiating the run
+
+- **Type:** boolean
+
+##### `splaylimit`
+
+Maximum amount of time to sleep before run
+
+- **Type:** number
+
+##### `tags`
+
+Restrict the Puppet run to a comma list of tags
+
+- **Type:** string
+- **Format/Validation:** `puppet_tags`
+- **Length:** 120
 
 
-**Output:**
+#### Output
 
-`summary`
-: (Appears as "Summary" on CLI)
+##### `summary`
 
-  Summary of command run
+(Appears as "Summary" on CLI)
+
+Summary of command run
 
 
 [↑ Back to top](#content)
@@ -717,47 +805,55 @@ Get the current status of the Puppet agent
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`applying`
-: (Appears as "Applying" on CLI)
+##### `applying`
 
-  Is a catalog being applied
+(Appears as "Applying" on CLI)
 
-`daemon_present`
-: (Appears as "Daemon Running" on CLI)
+Is a catalog being applied
 
-  Is the Puppet agent daemon running on this system
+##### `daemon_present`
 
-`disable_message`
-: (Appears as "Lock Message" on CLI)
+(Appears as "Daemon Running" on CLI)
 
-  Message supplied when agent was disabled
+Is the Puppet agent daemon running on this system
 
-`enabled`
-: (Appears as "Enabled" on CLI)
+##### `disable_message`
 
-  Is the agent currently locked
+(Appears as "Lock Message" on CLI)
 
-`idling`
-: (Appears as "Idling" on CLI)
+Message supplied when agent was disabled
 
-  Is the Puppet agent daemon running but not doing any work
+##### `enabled`
 
-`lastrun`
-: (Appears as "Last Run" on CLI)
+(Appears as "Enabled" on CLI)
 
-  When the Agent last applied a catalog in local time
+Is the agent currently locked
 
-`since_lastrun`
-: (Appears as "Since Last Run" on CLI)
+##### `idling`
 
-  How long ago did the Agent last apply a catalog in local time
+(Appears as "Idling" on CLI)
 
-`status`
-: (Appears as "Status" on CLI)
+Is the Puppet agent daemon running but not doing any work
 
-  Current status of the Puppet agent
+##### `lastrun`
+
+(Appears as "Last Run" on CLI)
+
+When the Agent last applied a catalog in local time
+
+##### `since_lastrun`
+
+(Appears as "Since Last Run" on CLI)
+
+How long ago did the Agent last apply a catalog in local time
+
+##### `status`
+
+(Appears as "Status" on CLI)
+
+Current status of the Puppet agent
 
 [↑ Back to top](#content)
 
@@ -774,54 +870,62 @@ Actions: `find`, `search`
 
 Get the attributes and status of a resource
 
-**Inputs:**
+#### Inputs
 
-`title` **(required)**
-: Name of resource to check
+##### `title` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `.`
-  - **Length:** 90
+Name of resource to check
 
-`type` **(required)**
-: Type of resource to check
+- **Type:** string
+- **Format/Validation:** `.`
+- **Length:** 90
 
-  - **Type:** string
-  - **Format/Validation:** `.`
-  - **Length:** 90
+##### `type` **(required)**
+
+Type of resource to check
+
+- **Type:** string
+- **Format/Validation:** `.`
+- **Length:** 90
 
 
-**Outputs:**
+#### Outputs
 
-`exported`
-: (Appears as "Exported" on CLI)
+##### `exported`
 
-  Boolean flag indicating export status
+(Appears as "Exported" on CLI)
 
-`managed`
-: (Appears as "Managed" on CLI)
+Boolean flag indicating export status
 
-  Flag indicating managed status
+##### `managed`
 
-`parameters`
-: (Appears as "Parameters" on CLI)
+(Appears as "Managed" on CLI)
 
-  Parameters of the inspected resource
+Flag indicating managed status
 
-`tags`
-: (Appears as "Tags" on CLI)
+##### `parameters`
 
-  Tags of the inspected resource
+(Appears as "Parameters" on CLI)
 
-`title`
-: (Appears as "Title" on CLI)
+Parameters of the inspected resource
 
-  Title of the inspected resource
+##### `tags`
 
-`type`
-: (Appears as "Type" on CLI)
+(Appears as "Tags" on CLI)
 
-  Type of the inspected resource
+Tags of the inspected resource
+
+##### `title`
+
+(Appears as "Title" on CLI)
+
+Title of the inspected resource
+
+##### `type`
+
+(Appears as "Type" on CLI)
+
+Type of the inspected resource
 
 
 [↑ Back to top](#content)
@@ -832,22 +936,24 @@ Get the attributes and status of a resource
 
 Get detailed info for all resources of a given type
 
-**Input:**
+#### Input
 
-`type` **(required)**
-: Type of resource to check
+##### `type` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `.`
-  - **Length:** 90
+Type of resource to check
+
+- **Type:** string
+- **Format/Validation:** `.`
+- **Length:** 90
 
 
-**Output:**
+#### Output
 
-`result`
-: (Appears as "Result" on CLI)
+##### `result`
 
-  The values of the inspected resources
+(Appears as "Result" on CLI)
+
+The values of the inspected resources
 
 [↑ Back to top](#content)
 
@@ -866,12 +972,13 @@ Inventory of all agents on the server
 
 (no inputs)
 
-**Output:**
+#### Output
 
-`agents`
-: (Appears as "Agents" on CLI)
+##### `agents`
 
-  List of agents on the server
+(Appears as "Agents" on CLI)
+
+List of agents on the server
 
 
 [↑ Back to top](#content)
@@ -884,17 +991,19 @@ Info about the main and sub collectives
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`collectives`
-: (Appears as "All Collectives" on CLI)
+##### `collectives`
 
-  All Collectives
+(Appears as "All Collectives" on CLI)
 
-`main_collective`
-: (Appears as "Main Collective" on CLI)
+All Collectives
 
-  The main Collective
+##### `main_collective`
+
+(Appears as "Main Collective" on CLI)
+
+The main Collective
 
 
 [↑ Back to top](#content)
@@ -907,77 +1016,91 @@ Get statistics from the running daemon
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`agents`
-: (Appears as "Agents" on CLI)
+##### `agents`
 
-  List of agents loaded
+(Appears as "Agents" on CLI)
 
-`configfile`
-: (Appears as "Config File" on CLI)
+List of agents loaded
 
-  Config file used to start the daemon
+##### `configfile`
 
-`filtered`
-: (Appears as "Failed Filter" on CLI)
+(Appears as "Config File" on CLI)
 
-  Didn't pass filter checks
+Config file used to start the daemon
 
-`passed`
-: (Appears as "Passed Filter" on CLI)
+##### `filtered`
 
-  Passed filter checks
+(Appears as "Failed Filter" on CLI)
 
-`pid`
-: (Appears as "PID" on CLI)
+Didn't pass filter checks
 
-  Process ID of the daemon
+##### `passed`
 
-`replies`
-: (Appears as "Replies" on CLI)
+(Appears as "Passed Filter" on CLI)
 
-  Replies sent back to clients
+Passed filter checks
 
-`starttime`
-: (Appears as "Start Time" on CLI)
+##### `pid`
 
-  Time the server started
+(Appears as "PID" on CLI)
 
-`threads`
-: (Appears as "Threads" on CLI)
+Process ID of the daemon
 
-  List of threads active in the daemon
+##### `replies`
 
-`times`
-: (Appears as "Times" on CLI)
+(Appears as "Replies" on CLI)
 
-  Processor time consumed by the daemon
+Replies sent back to clients
 
-`total`
-: (Appears as "Total Messages" on CLI)
+##### `starttime`
 
-  Total messages received
+(Appears as "Start Time" on CLI)
 
-`ttlexpired`
-: (Appears as "TTL Expired" on CLI)
+Time the server started
 
-  Messages that did pass TTL checks
+##### `threads`
 
-`unvalidated`
-: (Appears as "Failed Security" on CLI)
+(Appears as "Threads" on CLI)
 
-  Messages that failed security validation
+List of threads active in the daemon
 
-`validated`
-: (Appears as "Security Validated" on CLI)
+##### `times`
 
-  Messages that passed security validation
+(Appears as "Times" on CLI)
 
-`version`
-: (Appears as "Version" on CLI)
+Processor time consumed by the daemon
 
-  MCollective Version
+##### `total`
+
+(Appears as "Total Messages" on CLI)
+
+Total messages received
+
+##### `ttlexpired`
+
+(Appears as "TTL Expired" on CLI)
+
+Messages that did pass TTL checks
+
+##### `unvalidated`
+
+(Appears as "Failed Security" on CLI)
+
+Messages that failed security validation
+
+##### `validated`
+
+(Appears as "Security Validated" on CLI)
+
+Messages that passed security validation
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+MCollective Version
 
 
 [↑ Back to top](#content)
@@ -988,27 +1111,30 @@ Get statistics from the running daemon
 
 Get the active value of a specific config property
 
-**Input:**
+#### Input
 
-`item` **(required)**
-: The item to retrieve from the server
+##### `item` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `^.+$`
-  - **Length:** 50
+The item to retrieve from the server
+
+- **Type:** string
+- **Format/Validation:** `^.+$`
+- **Length:** 50
 
 
-**Outputs:**
+#### Outputs
 
-`item`
-: (Appears as "Property" on CLI)
+##### `item`
 
-  The config property being retrieved
+(Appears as "Property" on CLI)
 
-`value`
-: (Appears as "Value" on CLI)
+The config property being retrieved
 
-  The value that is in use
+##### `value`
+
+(Appears as "Value" on CLI)
+
+The value that is in use
 
 
 [↑ Back to top](#content)
@@ -1019,24 +1145,26 @@ Get the active value of a specific config property
 
 Get data from a data plugin
 
-**Inputs:**
+#### Inputs
 
-`query`
-: The query argument to supply to the data plugin
+##### `query`
 
-  - **Type:** string
-  - **Format/Validation:** `^.+$`
-  - **Length:** 50
+The query argument to supply to the data plugin
 
-`source` **(required)**
-: The data plugin to retrieve information from
+- **Type:** string
+- **Format/Validation:** `^.+$`
+- **Length:** 50
 
-  - **Type:** string
-  - **Format/Validation:** `^\w+$`
-  - **Length:** 50
+##### `source` **(required)**
+
+The data plugin to retrieve information from
+
+- **Type:** string
+- **Format/Validation:** `^\w+$`
+- **Length:** 50
 
 
-**Outputs:**
+#### Outputs
 
 
 [↑ Back to top](#content)
@@ -1047,27 +1175,30 @@ Get data from a data plugin
 
 Retrieve a single fact from the fact store
 
-**Input:**
+#### Input
 
-`fact` **(required)**
-: The fact to retrieve
+##### `fact` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `^[\w\-\.]+$`
-  - **Length:** 40
+The fact to retrieve
+
+- **Type:** string
+- **Format/Validation:** `^[\w\-\.]+$`
+- **Length:** 40
 
 
-**Outputs:**
+#### Outputs
 
-`fact`
-: (Appears as "Fact" on CLI)
+##### `fact`
 
-  The name of the fact being returned
+(Appears as "Fact" on CLI)
 
-`value`
-: (Appears as "Value" on CLI)
+The name of the fact being returned
 
-  The value of the fact
+##### `value`
+
+(Appears as "Value" on CLI)
+
+The value of the fact
 
 
 [↑ Back to top](#content)
@@ -1080,42 +1211,49 @@ System Inventory
 
 (no inputs)
 
-**Outputs:**
+#### Outputs
 
-`agents`
-: (Appears as "Agents" on CLI)
+##### `agents`
 
-  List of agent names
+(Appears as "Agents" on CLI)
 
-`classes`
-: (Appears as "Classes" on CLI)
+List of agent names
 
-  List of classes on the system
+##### `classes`
 
-`collectives`
-: (Appears as "All Collectives" on CLI)
+(Appears as "Classes" on CLI)
 
-  All Collectives
+List of classes on the system
 
-`data_plugins`
-: (Appears as "Data Plugins" on CLI)
+##### `collectives`
 
-  List of data plugin names
+(Appears as "All Collectives" on CLI)
 
-`facts`
-: (Appears as "Facts" on CLI)
+All Collectives
 
-  List of facts and values
+##### `data_plugins`
 
-`main_collective`
-: (Appears as "Main Collective" on CLI)
+(Appears as "Data Plugins" on CLI)
 
-  The main Collective
+List of data plugin names
 
-`version`
-: (Appears as "Version" on CLI)
+##### `facts`
 
-  MCollective Version
+(Appears as "Facts" on CLI)
+
+List of facts and values
+
+##### `main_collective`
+
+(Appears as "Main Collective" on CLI)
+
+The main Collective
+
+##### `version`
+
+(Appears as "Version" on CLI)
+
+MCollective Version
 
 
 [↑ Back to top](#content)
@@ -1128,12 +1266,13 @@ Responds to requests for PING with PONG
 
 (no inputs)
 
-**Output:**
+#### Output
 
-`pong`
-: (Appears as "Timestamp" on CLI)
+##### `pong`
 
-  The local timestamp
+(Appears as "Timestamp" on CLI)
+
+The local timestamp
 
 [↑ Back to top](#content)
 
@@ -1150,22 +1289,24 @@ Actions: `restart`, `start`, `status`, `stop`
 
 Restart a service
 
-**Input:**
+#### Input
 
-`service` **(required)**
-: The service to restart
+##### `service` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `service_name`
-  - **Length:** 90
+The service to restart
+
+- **Type:** string
+- **Format/Validation:** `service_name`
+- **Length:** 90
 
 
-**Output:**
+#### Output
 
-`status`
-: (Appears as "Service Status" on CLI)
+##### `status`
 
-  The status of the service after restarting
+(Appears as "Service Status" on CLI)
+
+The status of the service after restarting
 
 
 [↑ Back to top](#content)
@@ -1176,22 +1317,24 @@ Restart a service
 
 Start a service
 
-**Input:**
+#### Input
 
-`service` **(required)**
-: The service to start
+##### `service` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `service_name`
-  - **Length:** 90
+The service to start
+
+- **Type:** string
+- **Format/Validation:** `service_name`
+- **Length:** 90
 
 
-**Output:**
+#### Output
 
-`status`
-: (Appears as "Service Status" on CLI)
+##### `status`
 
-  The status of the service after starting
+(Appears as "Service Status" on CLI)
+
+The status of the service after starting
 
 
 [↑ Back to top](#content)
@@ -1202,22 +1345,24 @@ Start a service
 
 Gets the status of a service
 
-**Input:**
+#### Input
 
-`service` **(required)**
-: The service to get the status for
+##### `service` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `service_name`
-  - **Length:** 90
+The service to get the status for
+
+- **Type:** string
+- **Format/Validation:** `service_name`
+- **Length:** 90
 
 
-**Output:**
+#### Output
 
-`status`
-: (Appears as "Service Status" on CLI)
+##### `status`
 
-  The status of the service
+(Appears as "Service Status" on CLI)
+
+The status of the service
 
 
 [↑ Back to top](#content)
@@ -1228,22 +1373,24 @@ Gets the status of a service
 
 Stop a service
 
-**Input:**
+#### Input
 
-`service` **(required)**
-: The service to stop
+##### `service` **(required)**
 
-  - **Type:** string
-  - **Format/Validation:** `service_name`
-  - **Length:** 90
+The service to stop
+
+- **Type:** string
+- **Format/Validation:** `service_name`
+- **Length:** 90
 
 
-**Output:**
+#### Output
 
-`status`
-: (Appears as "Service Status" on CLI)
+##### `status`
 
-  The status of the service after stopping
+(Appears as "Service Status" on CLI)
+
+The status of the service after stopping
 
 
 [↑ Back to top](#content)
