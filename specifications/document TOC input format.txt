@@ -1,0 +1,94 @@
+Document TOC input format v0.1.
+-----
+
+Must be a <something>.toc file in some directory of the docs source. Must be JSON or YAML formatted.
+
+This represents a single document. It can be put anywhere as long as the info is correct, but putting it beside the content it rules will give you a default base_url and let you manage nav-as-content.
+
+If there are multiple TOCs for the same version of the same document in the docs source, we'll let one clobber portions of the other at random, so don't do that. Unless you really want to do that.
+
+DOCUMENT: (at root of file)
+
+{
+  "id": "DOCUMENT ID",
+  "version": "VERSION",
+  "title": "STRING",
+    # Used as a display title.
+  "released": (true|false),
+    # Whether this version can be considered "latest" if it's the newest version in a series. Can also be used to display "unreleased version" warnings/notices. Defaults to true if absent.
+  "base_url": "ABSOLUTE PATH",
+    # Defaults to the directory in which the file was found.
+  "contents": [ (SECTION | LAZY PAGE | PAGE), ... ]
+}
+
+ABSOLUTE PATH:
+
+By "absolute," I mean starting with a slash and reckoned from the top of the docs site (or the docs directory).
+
+For example: /puppetdb/2.0/release_notes.html
+
+PATH RELATIVE TO BASE URL:
+
+This may begin with anything other than a /.
+./lang_resources.html
+lang_resources.html <-- same as the first.
+../../../guides/custom_facts.html <-- This is useful for sources, but should generally be avoided for URLs.
+
+SECTION:
+
+{
+  "section": "STRING",
+    # The display name of the section. There's no other metadata about sections. Keeping it simple helps distinguish them from pages.
+  "contents": [ (SECTION | LAZY PAGE | PAGE), ... ]
+}
+
+LAZY PAGE:
+
+"(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)"
+  # This will create a page object and load all other data from the per-page YAML.
+
+PAGE:
+
+Any of this metadata except "url" can also be supplied by the per-page YAML frontmatter.
+
+By default, data from the page YAML frontmatter will always win, and will override anything from the document TOC. This can be affected with the "override_data" key, as described below.
+
+{
+  "url": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
+    # Mandatory.
+    # The user-facing URL.
+    # Should end in ".html".
+  "source": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
+    # Optional. Defaults to the value of "url".
+    # The path to the (eventual) rendered HTML fragment containing this page's content.
+    # Should end in ".html".
+    # If source != url, "override_data" defaults to true.
+  "override_data": (true|false),
+    # Whether data from the TOC file should override data from the per-page YAML frontmatter. This is a useful consideration for content re-use when titles, etc. need to change.
+    # Defaults to false most of the time. Defaults to true if "url" != "source".
+    # (Those defaults should mean we basically never need to explicitly set "override_data".)
+  "formerly": {
+    "VERSION": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
+    "VERSION": "..."
+  },
+    # This info persists into the future and gets appended to as necessary. We only mark the last known occurrance of a given name. That is, if:
+      # "2.8": "quick_start.html",
+      # "3.1": "quick_start_one.html"
+    # ...that means it was named quick_start in 2.8 and earlier, was named quick_start_one in 3.1 and 3.0 (and 2.9 if that was a thing), and has had its current name (whatever that is) ever since whatever version came after 3.1.
+  "canonical": "ABSOLUTE PATH",
+    # Deprecated. (...for now.) A manually specified canonical user-facing URL for this content. Ideally, we should be able to calculate the latest version of any page, including renamed ones, and use that as the canonical URL.
+  "title": "STRING",
+    # The title of the page, for display in links, navigations, page <title> elements, etc.
+  "subtitle": "STRING",
+    # An optional longer and more explanatory title, to be displayed on the page itself.
+  "description": "STRING",
+    # A description of the page's content for use in <meta> tags, taxonomies, and other metadata used to provide hints about content to people and machines.
+  "tags": [ "STRING", ... ],
+    # Any number of arbitrary tags, which can be used by the display layer for whatever.
+  "layout": "STRING",
+    # Optional. If present and having a value other than "default", this is a hint that the page has some special display requirements, and may look incorrect in the default template. The display layer may take this as advice, and may specify certain alternate layouts it will offer to pages that request them.
+  "toc": (true|false)
+    # Deprecated. If false, indicates that the page's internal structure, as defined by its headers, shouldn't be used to build a navigation outline for the user.
+    # This was a thing we had to implement due to the vagaries of the current layout. Since we put in-page TOC lists above the content, some pages (especially those with only one or two sections) looked bad with it there. We can solve this by just implementing TOCs better.
+    # (lol "just")
+}

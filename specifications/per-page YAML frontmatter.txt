@@ -1,0 +1,23 @@
+per-page YAML input v0.1
+-----
+
+This must be a valid YAML document, situated above the content of a page and separated from it by "---\n".
+
+This must be present in each source file, and may be consulted to build the final document structures.
+  (Having it mandatory is a limitation of Jekyll, not by design. But you'll almost always want to at least specify a title.)
+Any extra keys beyond the ones specified below will be ignored.
+
+---
+title: "STRING",
+subtitle: "STRING",
+description: "STRING",
+toc: (true|false),
+formerly:
+  VERSION: "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
+  VERSION: ...
+layout: "STRING",
+canonical: "ABSOLUTE PATH"
+tags: [ "STRING", ... ]
+---
+
+NON-YAML PAGE CONTENT
