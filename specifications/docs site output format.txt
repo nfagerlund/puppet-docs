@@ -1,0 +1,137 @@
+Docs site output format v0.1.
+----
+
+The output will consist of the following:
+
+* A single documentation.library file in the docs output directory.
+* Any number of processed HTML fragments, which are saved as files in any number of intervening directories in the docs output directory.
+* Any number of static resource files which may be referenced by the HTML fragments, including images, example code, text fragments, PDF files, and more.
+  * By default, these will be intermingled with the processed HTML fragments.
+
+
+LIBRARY:
+
+{
+  "format": "skeleton library",
+  "format_version": 1,
+  "date": "CURRENT DATE (Ruby's Time.now.to_s)",
+  "loose_pages": [ PAGE, ... ],
+  "unique_documents": [ DOCUMENT, ... ],
+  "versioned_documents": {
+    "DOCUMENT ID": {
+      "VERSION": DOCUMENT,
+      "VERSION": DOCUMENT ...
+    },
+    "DOCUMENT ID": ...
+  },
+  "redirects": {
+    "OLD URL": "NEW URL",
+    ...
+  },
+  "redirect_patterns": {
+    "URL REGEX": "REPLACEMENT PATTERN",
+    ...
+  },
+}
+
+DOCUMENT ID:
+
+A non-displayed string that remains constant for ALL versions of a given document. If the ID changes, it's a new document now and loses all its history.
+
+VERSION:
+
+A version number string like "2.0" or "1.7.3". May also be a non-numbered pseudo-version like "master".
+
+We expect that anything that looks like a real version number can be parsed and compared to similar versions, much like Ruby's Versionomy library does. Weird things like "master" are outside the timeline of versions; they appear, but aren't considered to be in the past or future of any other version.
+
+DOCUMENT:
+
+{
+  "id": "DOCUMENT ID",
+  "version": "VERSION",
+  "title": "STRING",
+    # Used as a display title.
+  "released": (true|false),
+    # Whether this version can be considered "latest" if it's the newest version in a series. Can also be used to display "unreleased version" warnings/notices. Defaults to true if absent.
+  "base_url": "ABSOLUTE PATH",
+    # This might actually not be necessary in the final output! Since each page knows its own absolute paths.
+    # The main thing it would be useful for is calculating renames over the course of a document. (Cf. the whole graph theory conversation about renamed pages.)
+  "contents": [ (SECTION | PAGE), ... ]
+}
+
+ABSOLUTE PATH:
+
+By "absolute," I mean starting with a slash and reckoned from the top of the docs site (or the docs directory).
+
+For example: /puppetdb/2.0/release_notes.html
+
+PATH RELATIVE TO BASE URL:
+
+This may begin with anything other than a /.
+./lang_resources.html
+lang_resources.html
+../../../guides/custom_facts.html <-- THIS SHOULD GENERALLY NOT HAPPEN, but it is allowed.
+
+SECTION:
+
+{
+  "section": "STRING",
+    # The display name of the section. There's no other metadata about sections. Keeping it simple helps distinguish them from pages.
+  "contents": [ (SECTION | PAGE), ... ]
+}
+
+PAGE:
+
+{
+  "url": "ABSOLUTE PATH",
+    # The user-facing URL, relative to the top of the docs site.
+  "source": "ABSOLUTE PATH",
+    # The path to the HTML fragment containing this page's content, relative to the top of the docs directory.
+  "url_relative_to_base_dir": "PATH RELATIVE TO BASE URL",
+    # This is useful when combined with "formerly", and may have some other purpose later.
+  "original_source": "ABSOLUTE PATH",
+    # FYI. The path to the .markdown (or whatever) file containing the page's original content, relative to the puppet-docs/source directory in the content repository.
+  "formerly": {
+    "VERSION": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
+    "VERSION": "..."
+  },
+    # This info persists into the future and gets appended to as necessary. We only mark the last known occurrance of a given name. That is, if:
+      # "2.8": "quick_start.html",
+      # "3.1": "quick_start_one.html"
+    # ...that means it was named quick_start in 2.8 and earlier, was named quick_start_one in 3.1 and 3.0 (and 2.9 if that was a thing), and has had its current name (whatever that is) ever since whatever version came after 3.1.
+    # The display layer can optionally use this info to calculate reliable paths from one version of a page to another.
+      # To go backward, we check before jumping; if we have values for "formerly", we choose the _lowest_ version _equal or greater than_ the destination version. So if we want 3.0, 2.8 is too early but 3.1 is OK.
+      # To go forward, we first check whether the destination version of the document has a page whose url_relative_to_base_dir matches ours. If not, we scan values for "formerly" for each page, and stop when we find one whose lowest version equal or greater than our current version matches our URL or url_relative_to_base_dir.
+    # Alternately, the display layer can be lazy and never just say "Couldn't find that; here's a helpful TOC dump for this version, maybe you can see what you wanted." I think that honestly might be a fine call for nav; the only problem remains canonical URLs.
+  "canonical": "ABSOLUTE PATH",
+    # Deprecated. A manually specified canonical user-facing URL for this content. Ideally, we should be able to calculate the latest version of any page, including renamed ones, and use that as the canonical URL.
+    # This may get de-deprecated, since I can see its use in loose-leaf pages that we're trying to move into versioned documents, or one-off copies that should exist for some reason.
+  "title": "STRING",
+    # The title of the page, for display in links, navigations, page <title> elements, etc.
+  "subtitle": "STRING",
+    # An optional longer and more explanatory title, to be displayed on the page itself.
+  "description": "STRING",
+    # A description of the page's content for use in <meta> tags, taxonomies, and other metadata used to provide hints about content to people and machines.
+  "tags": [ "STRING", ... ],
+    # Any number of arbitrary tags, which can be used by the display layer for whatever.
+  "layout": "STRING",
+    # Optional. If present and having a value other than "default", this is a hint that the page has some special display requirements, and may look incorrect in the default template. The display layer may take this as advice, and may specify certain alternate layouts it will offer to pages that request them.
+  "toc": (true|false),
+    # Deprecated. If false, indicates that the page's internal structure, as defined by its headers, shouldn't be used to build a navigation outline for the user.
+    # This was a thing we had to implement due to the vagaries of the current layout. Since we put in-page TOC lists above the content, some pages (especially those with only one or two sections) looked bad with it there. We can solve this by just implementing TOCs better.
+    # (lol "just")
+  "outline": [ { "level": "(h1|h2|h3|h4|h5|h6)", "text": "STRING", "id": "STRING" }, ...],
+    # A list of headers and their "id='something'" attributes, for easy direct linking.
+    # Optional, because I don't know if we want it, and it'll be somewhat more difficult to build than the rest of this.
+    # We currently have something much like this, but it's generated after the page is processed, and this data structure is built before then. So we'd probably have to go back over and modify it? Unsure.
+  "content_checksum": "SHA1",
+    # A checksum of the fully rendered HTML fragment specified in "source".
+    # Has the same technical problems as "outline", but I think I see the value here.
+  "last_modified": "DATE",
+    # Optional.
+    # This could be fetched from Git, but there are probably some technical hurdles to figure out.
+  "last_modified_commit": "SHA1"
+    # Optional.
+    # Same as above.
+}
+
