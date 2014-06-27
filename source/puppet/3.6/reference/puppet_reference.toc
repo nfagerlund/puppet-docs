@@ -1,0 +1,170 @@
+---
+format: "document toc"
+format_version: "0.1"
+id: "puppet"
+version: "3.6"
+title: "Puppet 3.6 Reference Manual"
+released: true
+contents: [
+    "./index.html",
+    "./release_notes.html",
+    "./system_requirements.html",
+    {
+      section: "The Puppet Language",
+      contents: [
+        "./lang_visual_index.html",
+        "./lang_summary.html",
+        "./lang_reserved.html",
+        "./lang_resources.html",
+        "./lang_relationships.html",
+        "./lang_defaults.html",
+        "./lang_variables.html",
+        "./lang_facts_and_builtin_vars.html",
+        "./lang_scope.html",
+        "./lang_conditional.html",
+        "./lang_expressions.html",
+        "./lang_functions.html",
+        "./lang_classes.html",
+        "./lang_defined_types.html",
+        "./lang_containment.html",
+        "./lang_namespaces.html",
+        "./lang_collectors.html",
+        "./lang_node_definitions.html",
+        "./lang_datatypes.html",
+        "./lang_comments.html",
+        "./lang_virtual.html",
+        "./lang_exported.html",
+        "./lang_tags.html",
+        "./lang_run_stages.html",
+        "./lang_import.html"
+      ],
+    },
+    {
+      section: "Modules",
+      contents: [
+        "./modules_fundamentals.html",
+        {
+          source: "/guides/plugins_in_modules.html",
+          title: "Plugins in Modules",
+          url: "./modules_plugins.html"
+        },
+        "./modules_installing.html",
+        "./modules_publishing.html",
+        "./modules_documentation.html"
+      ],
+    },
+    {
+      source: "/references/3.6.2/type.html",
+      tags: [
+        "generated"
+      ],
+      title: "The Resource Type Reference",
+      url: "./references/type.html"
+    },
+    {
+      section: "Other References (Functions, Metaparameters, etc.)",
+      contents: [
+        {
+          source: "/references/3.6.2/function.html",
+          title: "Function Reference",
+          url: "./references/function.html"
+        },
+        {
+          source: "/references/3.6.2/metaparameter.html",
+          title: "Metaparameter Reference",
+          url: "./references/metaparameter.html"
+        },
+        {
+          source: "/references/3.6.2/report.html",
+          title: "Report Reference",
+          url: "./references/report.html"
+        },
+        {
+          source: "/references/3.6.2/indirection.html",
+          title: "Indirection Reference",
+          url: "./references/indirection.html"
+        }
+      ],
+    },
+    {
+      section: "Important Directories and Files",
+      contents: [
+        "./dirs_confdir.html",
+        "./dirs_manifest.html",
+        "./dirs_modulepath.html",
+        "./dirs_ssldir.html",
+        "./dirs_vardir.html"
+      ],
+    },
+    {
+      section: "Environments",
+      contents: [
+        "./environments.html",
+        "./environments_classic.html",
+        "./environments_suggestions.html",
+        "./environments_limitations.html",
+        "./environments_https.html"
+      ],
+    },
+    {
+      section: "Configuration",
+      contents: [
+        "./config_about_settings.html",
+        "./config_print.html",
+        "./config_set.html",
+        "./config_important_settings.html",
+        {
+          source: "/references/3.6.2/configuration.html",
+          title: "Complete List of Settings (Configuration Reference)",
+          url: "./references/configuration.html"
+        },
+        {
+          section: "Config Files",
+          contents: [
+            "./config_file_main.html",
+            "./config_file_auth.html",
+            "./config_file_autosign.html",
+            "./config_file_csr_attributes.html",
+            "./config_file_device.html",
+            "./config_file_environment.html",
+            "./config_file_fileserver.html",
+            "./config_file_hiera.html",
+            "./config_file_puppetdb.html",
+            "./config_file_routes.html",
+            "./config_file_tagmail.html"
+          ],
+        }
+      ],
+    },
+    {
+      section: "SSL and Certificates",
+      contents: [
+        "./config_ssl_external_ca.html",
+        "./ssl_autosign.html",
+        "./ssl_attributes_extensions.html",
+        "./ssl_regenerate_certificates.html"
+      ],
+    },
+    {
+      section: "Data Formats",
+      contents: [
+        "./format_report.html"
+      ],
+    },
+    {
+      section: "Puppet Subsystems",
+      contents: [
+        "./subsystem_agent_master_comm.html",
+        "./subsystem_catalog_compilation.html"
+      ],
+    },
+    {
+      section: "Experimental Features",
+      contents: [
+        "./experiments_overview.html",
+        "./experiments_future.html",
+        "./experiments_lambdas.html",
+        "./experiments_msgpack.html"
+      ],
+    }
+]

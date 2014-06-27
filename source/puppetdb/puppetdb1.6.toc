@@ -1,0 +1,107 @@
+---
+title: "PuppetDB Documentation"
+id: "puppetdb"
+version: "1.6"
+base-url: "/puppetdb/1.6"
+released: true
+contents: [
+
+{section: "General Information",
+ contents: [
+   "./index.html",
+   "./puppetdb-faq.html",
+   "./release_notes.html",
+   "./known_issues.html",
+   "./community_add_ons.html",
+ ]
+},
+{section: "Installation",
+ contents: [
+   "./migrate.html",
+   "./install_via_module.html",
+   "./install_from_packages.html",
+   "./install_from_source.html",
+   "./upgrade.html",
+   "./connect_puppet_master.html",
+   "./connect_puppet_apply.html",
+ ]
+},
+{section: "Configuration",
+ contents: [
+   "./configure.html",
+   "./postgres_ssl.html",
+ ]
+},
+{section: "Usage/Admin",
+ contents: [
+   "./using.html",
+   "./maintain_and_tune.html",
+   "./migrate.html",
+   "./anonymization.html",
+   "./scaling_recommendations.html",
+   "./repl.html",
+   "./load_testing_tool.html",
+ ]
+},
+{section: "Troubleshooting",
+  contents: [
+    "./trouble_kahadb_corruption.html",
+    "./trouble_low_catalog_duplication.html",
+  ]
+},
+{section: "API",
+ contents: [
+   "./api/index.html",
+   "./api/query/tutorial.html",
+   "./api/query/curl.html",
+   "./api/commands.html",
+ ]
+},
+{section: "Query API Version 3",
+ contents: [
+   "./api/query/v3/query.html",
+   "./api/query/v3/operators.html",
+   "./api/query/v3/paging.html",
+   "./api/query/v3/facts.html",
+   "./api/query/v3/resources.html",
+   "./api/query/v3/nodes.html",
+   "./api/query/v3/catalogs.html",
+   "./api/query/v3/fact-names.html",
+   "./api/query/v3/metrics.html",
+   "./api/query/v3/reports.html",
+   "./api/query/v3/events.html",
+   "./api/query/v3/event-counts.html",
+   "./api/query/v3/aggregate-event-counts.html",
+   "./api/query/v3/server-time.html",
+   "./api/query/v3/version.html",
+ ]
+},
+{section: "Query API Version 2",
+ contents: [
+   "./api/query/v2/query.html",
+   "./api/query/v2/operators.html",
+   "./api/query/v2/facts.html",
+   "./api/query/v2/resources.html",
+   "./api/query/v2/nodes.html",
+   "./api/query/v2/fact-names.html",
+   "./api/query/v2/metrics.html",
+ ]
+},
+{section: "Query API Version 1",
+ contents: [
+   "./api/query/v1/facts.html",
+   "./api/query/v1/resources.html",
+   "./api/query/v1/nodes.html",
+   "./api/query/v1/status.html",
+   "./api/query/v1/metrics.html",
+ ]
+},
+{section: "Wire Formats",
+ contents: [
+   "./api/wire_format/catalog_format.html",
+   "./api/wire_format/facts_format.html",
+   "./api/wire_format/report_format.html",
+ ]
+}
+
+]
