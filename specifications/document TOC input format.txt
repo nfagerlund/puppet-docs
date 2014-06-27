@@ -10,6 +10,8 @@ If there are multiple TOCs for the same version of the same document in the docs
 DOCUMENT: (at root of file)
 
 {
+  "format": "document toc",
+  "format_version": "0.1",
   "id": "DOCUMENT ID",
   "version": "VERSION",
   "title": "STRING",

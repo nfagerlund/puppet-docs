@@ -12,8 +12,8 @@ The output will consist of the following:
 LIBRARY:
 
 {
-  "format": "skeleton library",
-  "format_version": 1,
+  "format": "document library",
+  "format_version": "0.1",
   "date": "CURRENT DATE (Ruby's Time.now.to_s)",
   "loose_pages": [ PAGE, ... ],
   "unique_documents": [ DOCUMENT, ... ],
