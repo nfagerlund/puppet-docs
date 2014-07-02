@@ -1,4 +1,4 @@
-Document TOC input format v0.1.
+Document TOC input format v0.2.
 -----
 
 Must be a <something>.toc file in some directory of the docs source. Must be JSON or YAML formatted.
@@ -11,7 +11,7 @@ DOCUMENT: (at root of file)
 
 {
   "format": "document toc",
-  "format_version": "0.1",
+  "format_version": "0.2",
   "id": "DOCUMENT ID",
   "version": "VERSION",
   "title": "STRING",
@@ -53,7 +53,7 @@ PAGE:
 
 Any of this metadata except "url" can also be supplied by the per-page YAML frontmatter.
 
-By default, data from the page YAML frontmatter will always win, and will override anything from the document TOC. This can be affected with the "override_data" key, as described below.
+Data from this TOC will always win against the page YAML frontmatter.
 
 {
   "url": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
@@ -64,11 +64,6 @@ By default, data from the page YAML frontmatter will always win, and will overri
     # Optional. Defaults to the value of "url".
     # The path to the (eventual) rendered HTML fragment containing this page's content.
     # Should end in ".html".
-    # If source != url, "override_data" defaults to true.
-  "override_data": (true|false),
-    # Whether data from the TOC file should override data from the per-page YAML frontmatter. This is a useful consideration for content re-use when titles, etc. need to change.
-    # Defaults to false most of the time. Defaults to true if "url" != "source".
-    # (Those defaults should mean we basically never need to explicitly set "override_data".)
   "formerly": {
     "VERSION": "(ABSOLUTE PATH | PATH RELATIVE TO BASE URL)",
     "VERSION": "..."
