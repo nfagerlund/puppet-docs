@@ -2,7 +2,7 @@
 title: "PuppetDB Documentation"
 id: "puppetdb"
 version: "1.6"
-base-url: "/puppetdb/1.6"
+base_url: "/puppetdb/1.6"
 released: true
 contents: [
 

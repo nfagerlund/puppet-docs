@@ -1,8 +1,10 @@
 ---
+format: "document toc"
+format_version: "0.1"
 title: "PuppetDB Documentation"
 id: "puppetdb"
 version: "2.0"
-base-url: "/puppetdb/2.0"
+base_url: "/puppetdb/2.0"
 released: true
 contents: [
 
