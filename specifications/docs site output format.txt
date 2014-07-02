@@ -42,6 +42,8 @@ VERSION:
 
 A version number string like "2.0" or "1.7.3". May also be a non-numbered pseudo-version like "master".
 
+May also be absent, in which case we call this a "unique document." Unique documents only have one version.
+
 We expect that anything that looks like a real version number can be parsed and compared to similar versions, much like Ruby's Versionomy library does. Weird things like "master" are outside the timeline of versions; they appear, but aren't considered to be in the past or future of any other version.
 
 DOCUMENT:
