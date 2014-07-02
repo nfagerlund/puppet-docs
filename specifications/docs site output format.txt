@@ -106,7 +106,7 @@ PAGE:
       # To go forward, we first check whether the destination version of the document has a page whose url_relative_to_base_dir matches ours. If not, we scan values for "formerly" for each page, and stop when we find one whose lowest version equal or greater than our current version matches our URL or url_relative_to_base_dir.
     # Alternately, the display layer can be lazy and never just say "Couldn't find that; here's a helpful TOC dump for this version, maybe you can see what you wanted." I think that honestly might be a fine call for nav; the only problem remains canonical URLs.
   "canonical": "ABSOLUTE PATH",
-    # Deprecated. A manually specified canonical user-facing URL for this content. Ideally, we should be able to calculate the latest version of any page, including renamed ones, and use that as the canonical URL.
+    # Optional. Deprecated. A manually specified canonical user-facing URL for this content. Ideally, we should be able to calculate the latest version of any page, including renamed ones, and use that as the canonical URL.
     # This may get de-deprecated, since I can see its use in loose-leaf pages that we're trying to move into versioned documents, or one-off copies that should exist for some reason.
   "title": "STRING",
     # The title of the page, for display in links, navigations, page <title> elements, etc.
