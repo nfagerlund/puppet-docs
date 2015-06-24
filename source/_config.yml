@@ -13,13 +13,13 @@ defaultnav:
   /facter/2.2: /_includes/facter22.html
   /facter/2.3: /_includes/facter23.html
   /facter/2.4: /_includes/facter24.html
-  /facter/3.0: /facter/3.0/_facter_toc.html
+  /facter/3.0: /_includes/pc1.html
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
   /guides/install_puppet: /_includes/puppet_general.html
   /hiera/1: /_includes/hiera1.html
   /hiera/2.0: /_includes/hiera20.html
-  /hiera/3.0: /_includes/hiera30.html
+  /hiera/3.0: /_includes/pc1.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
@@ -53,7 +53,7 @@ defaultnav:
   /puppetdb/2.0: /_includes/puppetdb2.0.html
   /puppetdb/2.1: /_includes/puppetdb2.1.html
   /puppetdb/2.2: /_includes/puppetdb2.2.html
-  /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
+  /puppetdb/2.3: /_includes/pc1.html
   /puppetdb/3.0: /puppetdb/3.0/_puppetdb_nav.html
   /puppetdb/master: /puppetdb/master/_puppetdb_nav.html
   /puppet/0.24/reference: /_includes/puppet_0_24.html
@@ -68,11 +68,11 @@ defaultnav:
   /puppet/pre4.0: /_includes/puppet_pre_40.html
   /puppet/4.0/reference: /_includes/puppet_4.html
   /puppet/4.1/reference: /_includes/puppet4.1.html
-  /puppet/4.2/reference: /_includes/puppet4.2.html
+  /puppet/4.2/reference: /_includes/pc1.html
   /puppetserver/1.0: /_includes/server1.0.html
   /puppetserver/2.0: /_includes/server2.0.html
   /puppetserver/1.1: /_includes/puppet_3_8.html
-  /puppetserver/2.1: /_includes/puppet4.1.html
+  /puppetserver/2.1: /_includes/pc1.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
