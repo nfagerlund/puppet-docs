@@ -1,29 +1,24 @@
 ---
 layout: default
-title: External Node Classifiers
+title: External node classifiers
 ---
 
-[environment]: /puppet/latest/reference/environments.html
+[environment]: ./environments.html
 
-External Node Classifiers
-==============
 
-An external node classifier is an arbitrary script or application which can tell Puppet which classes a node should have. It can replace or work in concert with the `node` definitions in the main site manifest (`site.pp`).
+An external node classifier (ENC) is an arbitrary script or application which can tell Puppet which classes a node should have. It can replace or supplement [node definitions][] in the [main manifest][].
 
-Depending on the external data sources you use in your infrastructure, building an external node classifier can be a valuable way to extend Puppet.
+If you use a non-Puppet system to track important information about your nodes, an ENC can be an easy and lightweight way to integrate that data with Puppet.
 
-* * *
+## What is an ENC?
 
-What Is an ENC?
----------------
-
-An external node classifier is an executable that can be called by puppet master; it doesn't have to be written in Ruby. Its only argument is the name of the node to be classified, and it returns a YAML document describing the node.
+An external node classifier is an executable command that can be called by Puppet Server or Puppet apply. Its only argument is the name of the node to be classified, and it returns a YAML document describing the node.
 
 Inside the ENC, you can reference any data source you want, including some of Puppet's own data sources, but from Puppet's perspective, it just puts in a node name and gets back a hash of information.
 
 ENCs can co-exist with standard node definitions in `site.pp`, and **the classes declared in each source are effectively merged.**
 
-> ### How Merging Works
+> ### How merging works
 >
 > Every node **always** gets a **node object** (which may be empty or may contain classes, parameters, and an environment) from the configured `node_terminus`. (This setting takes effect where the catalog is compiled; on the puppet master server when using an agent/master arrangement, and on the node itself when using puppet apply. The default node terminus is `plain`, which returns an empty node object; the `exec` terminus calls an ENC script to determine what should go in the node object.) Every node **may** also get a **node definition** from the site manifest (usually called site.pp).
 >
@@ -36,12 +31,11 @@ ENCs can co-exist with standard node definitions in `site.pp`, and **the classes
 >     * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make multiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
 >     * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
-> ### A Note about `node_terminus` for Puppet Enterprise Users
+> ### A note about `node_terminus` for Puppet Enterprise users
 >
 > PE 3.2 did away with `node_terminus=exec` and replaced it with `node_terminus=console`. With this change, we have improved security, as the puppet master can now verify the console. For more information about this change, [refer to the PE 3.2 upgrade instructions](/pe/3.2/install_upgrading.html#important-notes-and-warnings).
 
-Considerations and Differences from Node Definitions
------
+## Considerations and differences from node definitions
 
 [above]: #considerations-and-differences-from-node-definitions
 
@@ -51,18 +45,20 @@ Considerations and Differences from Node Definitions
 * Unlike regular node definitions, where a node may match a less specific definition if an exactly matching one isn't found (depending on the puppet master's `strict_hostname_checking` setting), an ENC is called only once, with the node's full name.
 
 
-Connecting an ENC
------------------
+## Connecting an ENC
 
-To tell puppet master to use an ENC, you need to set two [settings](/puppet/latest/reference/config_about_settings.html): `node_terminus` has to be set to "exec", and `external_nodes` should have the path to the executable.
+To tell Puppet to use an ENC, set two [settings](./config_about_settings.html) in puppet.conf:
+
+* `node_terminus` must be set to `exec`.
+* `external_nodes` must be the path to the executable.
+
+If you're using Puppet Server, set these in the `[master]` config section on your Puppet Server nodes. If you're using Puppet apply in a [stand-alone architecture](./architecture.html#the-stand-alone-architecture), set them in the `[main]` section on every node.
 
     [master]
       node_terminus = exec
       external_nodes = /usr/local/bin/puppet_node_classifier
 
-
-ENC Output Format
------------------
+## ENC output format
 
 ENCs must return either a [YAML](http://www.yaml.org) hash or nothing. This hash may contain `classes`, `parameters`, and `environment` keys, and must contain at least either `classes` or `parameters`. ENCs should exit with an exit code of 0 when functioning normally, and may exit with a non-zero exit code if you wish puppet master to behave as though the requested node was not found.
 
@@ -114,7 +110,7 @@ If present, the value of `environment` must be a string representing the desired
 
     environment: production
 
-#### Complete Example
+#### Complete example
 
     ---
     classes:
@@ -134,8 +130,7 @@ If present, the value of `environment` must be a string representing the desired
         iburst: true
     environment: production
 
-Tricks, Notes, and Further Reading
-----------------------------------
+## Tricks, notes, and further reading
 
-* Although only the node name is directly passed to an ENC, it can make decisions based on other facts about the node by querying the [inventory service](./inventory_service.html) HTTP API or using the puppet facts subcommand shipped with Puppet 2.7.
-* Puppet's "exec" `node_terminus` is just one way for Puppet to build node objects, and it's optimized for flexibility and for the simplicity of its API. There are situations where it can make more sense to design a native node terminus instead of an ENC, one example being the "ldap" node terminus that ships with Puppet. See [the LDAP nodes documentation](./ldap_nodes.html) for more info.
+* Although only the node name is directly passed to an ENC, it can make decisions based on other facts about the node by querying [PuppetDB]({{puppetdb}}/).
+* Puppet's "exec" `node_terminus` is just one way for Puppet to build node objects, and it's optimized for flexibility and for the simplicity of its API. There are situations where it can make more sense to design a native node terminus instead of an ENC, one example being the "ldap" node terminus that ships with Puppet. See [the LDAP node classifier](./nodes_ldap.html) for more info.
