@@ -79,7 +79,7 @@ As [described elsewhere,][about_settings] the Puppet master application reads mo
 
 When running from the command line, Puppet master can directly accept command line options. When running via an init script, it sometimes gets command line options from an init script config file. The location and format of this file will vary depending on your platform.
 
-To change the Puppet master's settings, you should generally use [puppet.conf][]. The only two options you may want to set on the command line or in the init script config file are `--verbose` or `--debug`, to change the amount of detail in the logs.
+To change the Puppet master's settings, you should generally use [puppet.conf][]. The only two options you might want to set on the command line or in the init script config file are `--verbose` or `--debug`, to change the amount of detail in the logs.
 
 [about_settings]: ./config_about_settings.html
 [puppet.conf]: ./config_file_main.html

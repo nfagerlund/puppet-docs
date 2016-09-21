@@ -6,13 +6,13 @@ canonical: "/puppet/latest/reference/environments_limitations.html"
 
 [env_var]: ./environments.html#referencing-the-environment-in-manifests
 
-Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some may take a lot longer than others.
+Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some might take a lot longer than others.
 
 ## Plugins running on the Puppet master are weird
 
 Puppet modules can contain Puppet code, templates, file sources, and Ruby plugin code (in the `lib` directory). Environments work perfectly with most of those, but there's a lingering problem with plugins.
 
-The short version is: any plugins destined for the _agent node_ (e.g. custom facts and custom resource providers) will work fine, but plugins to be used by the _Puppet master_ (functions, resource types, report processers, indirector termini) can get mixed up, and you won't be able to control which version the Puppet master is using. So if you need to do testing while developing custom resource types or functions, you may need to spin up a second Puppet master, since environments won't be reliable.
+The short version is: any plugins destined for the _agent node_ (e.g. custom facts and custom resource providers) will work fine, but plugins to be used by the _Puppet master_ (functions, resource types, report processers, indirector termini) can get mixed up, and you won't be able to control which version the Puppet master is using. So if you need to do testing while developing custom resource types or functions, you might need to spin up a second Puppet master, since environments won't be reliable.
 
 This has to do with the way Ruby loads code, and we're not sure if it can be fixed given Puppet's current architecture. (Some of us think this would require separate Ruby Puppet master processes for each environment, which isn't currently practical with the way Rack manages Puppet.)
 

@@ -38,7 +38,7 @@ The following commands are designed for use on Windows:
 
 The installer adds Puppet's commands to the PATH. After installing, you can run them from any **command prompt (cmd.exe)** or **PowerShell prompt.**
 
-You may have to open a new command prompt after installing; any processes that were already running before you ran the installer will not pick up the changed PATH value.
+You might have to open a new command prompt after installing; any processes that were already running before you ran the installer will not pick up the changed PATH value.
 
 ## Running With Administrator Privileges
 

@@ -53,7 +53,7 @@ The Unicorn + Nginx stack is also fairly popular, but it has more pieces that yo
 
 Under Rack, the Puppet master processes are started and managed by your Rack web server. The way to start and stop the Puppet master will depend on your specific web server stack.
 
-If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the Puppet master's virtual host and do a graceful restart.
+If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you might need to disable the Puppet master's virtual host and do a graceful restart.
 
 ## The Rack Puppet master's run environment
 
@@ -112,7 +112,7 @@ If the keepalive timeout is set too low on the master, agents will occasionally 
 
 When running under Rack, Puppet master's logging is split.
 
-Your Rack server stack is in charge of logging any information about incoming HTTPS requests and errors. It may maintain per-vhost log files, or send messages elsewhere. See your server's documentation for details.
+Your Rack server stack is in charge of logging any information about incoming HTTPS requests and errors. It might maintain per-vhost log files, or send messages elsewhere. See your server's documentation for details.
 
 The Puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
@@ -130,13 +130,13 @@ To run a Rack Puppet master, you must configure your Rack web server to load an 
 
 The exact steps will depend on your Rack server; see the [Passenger guide][passenger_guide] for an example.
 
-Note that the `config.ru` file must be owned by the user `puppet` and the group `puppet` (or whatever user you want the Puppet master to run as; see "User" above). Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
+Note that the `config.ru` file must be owned by the user `puppet` and the group `puppet` (or whatever user you want the Puppet master to run as; see "User" above). Most Rack servers use this file's ownership to set the application's user. Alternately, you might be able to explicitly configure your Rack server to use a specific user.
 
 ### SSL termination
 
 Your Rack web server stack must terminate SSL and verify agent certificates. The stack must also pass certain certificate data from each request to the Puppet master.
 
-This may be done by the Rack web server itself, or by some kind of SSL terminating proxy. For general information about this, see [our background reference on SSL.][ssl_persist]
+This can be done by the Rack web server itself, or by some kind of SSL terminating proxy. For general information about this, see [our background reference on SSL.][ssl_persist]
 
 You should have already initialized a CA and created the Puppet master's credentials. To terminate SSL you will need one or more CA certificates, a Puppet master certificate, a Puppet master private key, and a certificate revocation list (CRL).
 
@@ -181,9 +181,9 @@ Optional. Should be the entire client certificate in [PEM format][], if a certif
 
 Puppet uses this variable to enable [the `$trusted` hash][trusted] and to log warnings when agent certificates are about to expire. If the variable is absent, you will not be able to use these features.
 
-If the Rack server is embedded in the same server that terminates SSL, this variable may be easy to fill. For example, in Apache with `mod_ssl`, setting `SSLOptions +ExportCertData` will automatically put the client certificate into `SSL_CLIENT_CERT`.
+If the Rack server is embedded in the same server that terminates SSL, this variable might be easy to fill. For example, in Apache with `mod_ssl`, setting `SSLOptions +ExportCertData` will automatically put the client certificate into `SSL_CLIENT_CERT`.
 
-If the Rack server is _not_ embedded in the SSL terminating part of your stack (for example, when running under the Nginx + Unicorn stack), you may need to embed the certificate in an HTTP header, then configure your Rack server to extract the certificate data and set the environment variable.
+If the Rack server is _not_ embedded in the SSL terminating part of your stack (for example, when running under the Nginx + Unicorn stack), you might need to embed the certificate in an HTTP header, then configure your Rack server to extract the certificate data and set the environment variable.
 
 The name of this variable is not configurable.
 
@@ -191,7 +191,7 @@ The name of this variable is not configurable.
 
 As [described elsewhere,][about_settings] the Puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line. When running under Rack, Puppet master gets its command line options from the `config.ru` file. The default `config.ru` file sets some common options for you.
 
-To change the Puppet master's settings, you should use [puppet.conf][]. The only two options you may want to set in `config.ru` are `--verbose` or `--debug`, to change the amount of detail in the logs.
+To change the Puppet master's settings, you should use [puppet.conf][]. The only two options you might want to set in `config.ru` are `--verbose` or `--debug`, to change the amount of detail in the logs.
 
 [about_settings]: ./config_about_settings.html
 [puppet.conf]: ./config_file_main.html
@@ -202,5 +202,5 @@ To change the Puppet master's settings, you should use [puppet.conf][]. The only
 >
 > When an HTTPS request comes in, the web server passes it to Rack. Rack reformats the request, turning it into a Ruby object that contains all of the relevant information (URL, method, POST data, headers, SSL info). It then passes the formatted request to the application object.
 >
-> The Puppet master application reads information from the request, then builds a response, doing whatever is necessary to construct it. This may involve returning file contents, returning certificates or other credentials, or the full process of catalog compilation (request a node object from an ENC, evaluate the main manifest, load and evaluate classes from modules, evaluate templates, collect exported resources, etc.). The Puppet master object then formats its response and passes it to Rack, which passes it on to the web server and the agent node that made the request.
+> The Puppet master application reads information from the request, then builds a response, doing whatever is necessary to construct it. This might involve returning file contents, returning certificates or other credentials, or doing a full catalog compilation (request a node object from an ENC, evaluate the main manifest, load and evaluate classes from modules, evaluate templates, collect exported resources, etc.). The Puppet master object then formats its response and passes it to Rack, which passes it on to the web server and the agent node that made the request.
 

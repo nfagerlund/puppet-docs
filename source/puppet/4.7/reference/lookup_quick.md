@@ -199,7 +199,7 @@ Any normal data source can set a special `lookup_options` metadata key, which co
 The value of `lookup_options` should be a hash, where:
 
 * Each key is the name of a key that Puppet lookup might be asked for (like `ntp::servers`).
-* Each value is a hash. This hash may contain a `merge` key, whose value is valid for [the `lookup` function's][lookup_function] `merge` argument.
+* Each value is a hash. This hash can contain a `merge` key, whose value is valid for [the `lookup` function's][lookup_function] `merge` argument.
 
 So, for example:
 

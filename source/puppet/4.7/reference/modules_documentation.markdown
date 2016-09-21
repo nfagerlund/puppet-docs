@@ -75,8 +75,8 @@ Overall, the **Setup** section should give a user the basic steps to successfull
 
 **What (modulename) affects** is used only if:
 
-* the module alters, overwrites, or otherwise touches files, packages, services, or operations other than the named software; OR
-* the module's general performance may overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
+* The module alters, overwrites, or otherwise touches files, packages, services, or operations other than the named software; OR
+* The module's general performance might overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
 
 ```
 ## Setup

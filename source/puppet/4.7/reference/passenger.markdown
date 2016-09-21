@@ -70,7 +70,7 @@ To configure Apache to run the Puppet master application, you must:
 
 #### Keepalive Timeout
 
-Make sure Apache's `KeepAliveTimeout` setting is set to at least `5`. (`5` is the default value, but your global Apache config may have set a different value, in which case you'll need to change it.)
+Make sure Apache's `KeepAliveTimeout` setting is set to at least `5`. (`5` is the default value, but your global Apache config might have set a different value, in which case you'll need to change it.)
 
 Although this setting is valid at virtual host scope, the way Apache reads its value means it's safer to set it globally.
 
@@ -82,9 +82,9 @@ Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn P
 * Copy the `ext/rack/config.ru` file from the Puppet source code into the parent directory
 * Set the ownership of the config.ru file
 
-> **Note:** The `chown` step is important --- the owner of this file is the user the Puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
+> **Note:** The `chown` step is important --- the owner of this file is the user the Puppet master process will run under. This should usually be `puppet`, but might be different in your deployment.
 >
-> Also, make sure the Apache user (which may vary by platform) can both read and traverse all three directories, can traverse all of its parent directories, and can write to the "tmp" directory.
+> Also, make sure the Apache user (which varies by platform) can both read and traverse all three directories, can traverse all of its parent directories, and can write to the "tmp" directory.
 
 These steps will look something like this:
 
@@ -206,7 +206,7 @@ For additional details about enabling and configuring Passenger, see the
 >
 > The example vhost config above sets `PassengerHighPerformance On`. This setting basically allows Passenger to shortcut some of Apache's normal layers of request handling, so the Puppet application can respond earlier. Unfortunately, it can also interfere with other Apache modules, including important ones like `mod_proxy`, `mod_rewrite`, and `mod_authz_core`.
 >
-> In the example, we've limited its effect by setting PassengerHighPerformance at the vhost scope, so it won't interfere with any non-Puppet requests the Apache process is handling. You can also enable or disable it in a `<Location>` directive, which may be necessary if you're proxying traffic to the Puppet CA in a multi-master setup.
+> In the example, we've limited its effect by setting PassengerHighPerformance at the vhost scope, so it won't interfere with any non-Puppet requests the Apache process is handling. You can also enable or disable it in a `<Location>` directive, which might be necessary if you're proxying traffic to the Puppet CA in a multi-master setup.
 
 > ### Notes on DocumentRoot and PassengerAppRoot
 >

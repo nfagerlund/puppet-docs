@@ -20,8 +20,8 @@ This page lists changes to the `puppet-agent` package. For details about changes
 The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 * X must increase for major backwards-incompatible changes
-* Y may increase for backwards-compatible new functionality
-* Z may increase for bug fixes
+* Y can increase for backwards-compatible new functionality
+* Z can increase for bug fixes
 
 ## If you're upgrading from Puppet 3.x
 

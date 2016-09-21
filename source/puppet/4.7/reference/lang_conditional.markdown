@@ -31,7 +31,7 @@ An "if" statement:
 
 ``` puppet
 if $facts['is_virtual'] {
-  warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
+  warning('Tried to include class ntp on virtual machine; this node might be misclassified.')
 }
 elsif $facts['os']['family'] == 'Darwin' {
   warning('This NTP module does not yet work on our Mac laptops.')
@@ -87,7 +87,7 @@ file { '/etc/passwd':
 ``` puppet
 if $facts['is_virtual'] {
   # Our NTP module is not supported on virtual machines:
-  warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
+  warning('Tried to include class ntp on virtual machine; this node might be misclassified.')
 }
 elsif $facts['os']['name'] == 'Darwin' {
   warning('This NTP module does not yet work on our Mac laptops.')
@@ -125,7 +125,7 @@ The value of an `if` expression is the value of the last expression in the execu
 
 ### Conditions
 
-The condition(s) of an "if" statement may be any expression that resolves to a boolean value. This includes:
+The condition(s) of an "if" statement can be any expression that resolves to a boolean value. This includes:
 
 * [Variables][]
 * [Expressions][], including arbitrarily nested `and` and `or` expressions
@@ -133,7 +133,7 @@ The condition(s) of an "if" statement may be any expression that resolves to a b
 
 Expressions that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
 
-Static values may also be conditions, although doing this would be pointless.
+Static values can also be conditions, although doing this would be pointless.
 
 #### Regex capture variables
 
@@ -186,7 +186,7 @@ The value of an `unless` expression is the value of the last expression in the e
 
 ### Conditions
 
-The condition(s) of an "unless" statement may be any expression that resolves to a boolean value. This includes:
+The condition(s) of an "unless" statement can be any expression that resolves to a boolean value. This includes:
 
 * [Variables][]
 * [Expressions][], including arbitrarily nested `and` and `or` expressions
@@ -194,7 +194,7 @@ The condition(s) of an "unless" statement may be any expression that resolves to
 
 Expressions that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
 
-Static values may also be conditions, although doing this would be pointless.
+Static values can also be conditions, although doing this would be pointless.
 
 #### Regex capture variables
 

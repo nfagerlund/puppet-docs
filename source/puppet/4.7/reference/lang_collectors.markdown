@@ -53,7 +53,7 @@ Collectors can search the values of resource titles and attributes using a speci
 
 A collector with an empty search expression will match **every** resource of the specified resource type.
 
-Parentheses may be used to improve readability, and to modify the priority/grouping of `and`/`or`. You can create arbitrarily complex expressions using the following four operators:
+Parentheses can be used to improve readability, and to modify the priority/grouping of `and`/`or`. You can create arbitrarily complex expressions using the following four operators:
 
 - [`==`](#equality-search)
 - [`!=`](#non-equality-search)
@@ -78,7 +78,7 @@ This operator is non-symmetric:
 
 For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key.
 
-> Note: This operator will always match if the attribute's value is an array. This behavior may be undefined.
+> Note: This operator will always match if the attribute's value is an array.
 
 #### `and`
 
@@ -99,7 +99,7 @@ This operator has lower priority than `and`.
 ## Location
 
 
-Resource collectors may be used as independent statements, as the operand of a [chaining statement][chaining], or in a [collector attribute block][amend] for amending resource attributes.
+Resource collectors can be used as independent statements, as the operand of a [chaining statement][chaining], or in a [collector attribute block][amend] for amending resource attributes.
 
 Notably, collectors **cannot** be used in the following contexts:
 

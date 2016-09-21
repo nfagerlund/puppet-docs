@@ -42,7 +42,7 @@ A `--force` flag can be used to make `generate` overwrite all generated data for
 
 The generated metadata is using another experimental feature in Puppet called Pcore. Pcore is the name we have given to the Puppet type system including new extensions that make it possible to describe objects in the Puppet language and to map them to implementation types (for now Ruby classes, later other possible runtime languages).
 
-As of Puppet 4.6.0, the generated Pcore logic is considered to be write only, and it may change in a future Puppet release. (When you're deploying a new Puppet version, a `generate type --environment <env> --force` should be executed).
+As of Puppet 4.6.0, the generated Pcore logic is considered to be write only, and it might change in a future Puppet release. (When you're deploying a new Puppet version, a `generate type --environment <env> --force` should be executed).
 
 The generated Pcore uses the `.pp` extension because it is regular Puppet logic that is parsed by the regular parser and evaluated by the regular evaluator. The expressions used in the generated files should however not be used in regular manifests.
 
@@ -60,4 +60,4 @@ It is suggested that a run of `generate type --environment <envname>` is perform
 
 ## The future of this experimental feature
 
-The primary purpose of this experimental feature is to solve the lack of isolation between resource type implementations of different versions in different environments. It is also the foundation for further exploration towards the goal of being able to express resource types completely in the Puppet language. The Pcore format used in the initial release of this experimental version is driven completely by the existing 3.x API and is not considered to be a temporary bridge that helps us separate the compilation and agent apply logic code paths. We may base additional features on top of this 3.x based format such as validating attribute types, making it possible to use the puppet type system to validate attributes (parameters and properties) also on the agent side, validate the names of providers and similar features.
+The primary purpose of this experimental feature is to solve the lack of isolation between resource type implementations of different versions in different environments. It is also the foundation for further exploration towards the goal of being able to express resource types completely in the Puppet language. The Pcore format used in the initial release of this experimental version is driven completely by the existing 3.x API and is not considered to be a temporary bridge that helps us separate the compilation and agent apply logic code paths. We might base additional features on top of this 3.x based format such as validating attribute types, making it possible to use the puppet type system to validate attributes (parameters and properties) also on the agent side, validate the names of providers and similar features.

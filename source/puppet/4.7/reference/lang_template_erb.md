@@ -234,7 +234,7 @@ For example, to evaluate one template inside another:
 
 To log a warning using Puppet's own logging system, so that it will appear in reports:
 
-    <%= scope.function_warning(["Template was missing some data; this config file may be malformed."]) %>
+    <%= scope.function_warning(["Template was missing some data; this config file might be malformed."]) %>
 
 
 ## Example template
