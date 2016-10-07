@@ -10,6 +10,27 @@ title: Assigning classes to nodes
 [ldap]: ./nodes_ldap.html
 [compilation]: ./lang_summary.html#compilation-and-catalogs
 [main manifest]: ./dirs_manifest.html
+[rp]: {{pe}}/r_n_p_intro.html
+
+[Classes][] are Puppet's main unit of configuration. Most of the work of managing systems with Puppet can be divided into two categories:
+
+* Designing classes that manage significant chunks of system configuration.
+* Assigning those classes to nodes, which tells Puppet how to manage each system.
+
+Although classes are always written in the Puppet language, you can assign classes with multiple tools. You can even combine multiple tools to provide different configuration tools for different parts of your business.
+
+## Best practice: only assign role classes to nodes
+
+**Before** you start assigning classes to nodes, we recommend that you read our [pages about the roles and profiles method][rp] and follow their advice. In short:
+
+* Write two layers of wrapper classes (the eponymous roles and profiles) to build complete system configurations.
+* Only assign "role" classes to your nodes.
+
+Those pages demonstrate the benefits in more detail, but the summary is that this lets you manage your nodes with a small, consciously designed interface that's suited to your own infrastructure, rather than a large, randomly accreted interface that requires a lot of boilerplate and fussing around.
+
+##
+
+
 
 
 
